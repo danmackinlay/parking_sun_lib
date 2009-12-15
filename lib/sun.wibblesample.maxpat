@@ -19,6 +19,20 @@
 		"enablevscroll" : 1,
 		"boxes" : [ 			{
 				"box" : 				{
+					"maxclass" : "newobj",
+					"text" : "sun.simplesample",
+					"id" : "obj-44",
+					"fontname" : "Arial",
+					"patching_rect" : [ 45.0, 195.0, 107.0, 20.0 ],
+					"numinlets" : 3,
+					"fontsize" : 12.0,
+					"numoutlets" : 2,
+					"outlettype" : [ "signal", "signal" ]
+				}
+
+			}
+, 			{
+				"box" : 				{
 					"maxclass" : "multislider",
 					"size" : 2,
 					"id" : "obj-43",
