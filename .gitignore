@@ -1,2 +1,28 @@
-*
-!/Presets/*
+/Ableton\ Project\ Info
+/Grooves
+/Templates
+/Clips
+/Icon?
+/Samples
+/Waveforms
+/Defaults
+/Lessons
+/Sets
+/Presets/*/
+!/Presets/MIDI\ Effects/
+!/Presets/Audio\ Effects/
+!/Presets/Instruments/
+/Presets/MIDI\ Effects/*
+/Presets/Audio\ Effects/*
+/Presets/Instruments/*
+!/Presets/MIDI\ Effects/Max\ MIDI\ Effect/
+!/Presets/Audio\ Effects/Max\ Audio\ Effect/
+!/Presets/Instruments/Max\ Instrument/
+/Presets/MIDI\ Effects/Max\ MIDI\ Effect/Monolake\ Devices/*
+/Presets/MIDI\ Effects/Max\ MIDI\ Effect/Step\ Sequencer/*
+/Presets/MIDI\ Effects/Max\ MIDI\ Effect/Tools/*
+/Presets/Instruments/Max\ Instrument/Loop\ Shifter/*
+/Presets/Instruments/Max\ Instrument/Pluggo/*
+/Presets/Audio Effects/Max Audio Effect/Buffer Shuffler/*
+/Presets/Audio Effects/Max Audio Effect/Pluggo/*
+/Presets/Audio Effects/Max Audio Effect/Tools/*
