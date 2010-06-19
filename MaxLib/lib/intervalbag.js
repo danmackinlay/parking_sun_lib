@@ -1,6 +1,7 @@
 var inlets = 2;
+var outlets = 2;
 var autowatch = 1;
-var pitch_bag = [];
+var freq_bag = [];
 var loudness_bag = [];
 var numerator_bag = [];
 var denominator_bag = [];
@@ -8,7 +9,8 @@ var ratio_bag = [];
 var max_bag_size = 5;
 
 function bang() {
-  outlet(0, get_elem(pitch_bag));
+  outlet(0, get_elem(loudness_bag));
+  outlet(0, get_elem(freq_bag));
 }
 
 function list(a) {
@@ -20,12 +22,13 @@ function list(a) {
 }
 
 function capture_pitch (cooked) {
-  var pitch = cooked[0];
-  var freq = cooked[1];
-  var loudness = cooked[2];
-  pitch_bag.push(pitch);
-  while (pitch_bag.length>max_bag_size) {
-    pitch_bag.shift();
+  var freq = cooked[0];
+  var loudness = 100. + (cooked[1])*1.27; // convert loudness to velocity
+  freq_bag.push(freq);
+  loudness_bag.push(loudness);
+  while (freq_bag.length>max_bag_size) {
+    freq_bag.shift();
+    loudness_bag.shift();
   }
 }
 
