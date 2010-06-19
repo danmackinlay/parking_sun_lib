@@ -9,7 +9,7 @@ var ratio_bag = [];
 var max_bag_size = 5;
 
 function bang() {
-  outlet(0, get_elem(loudness_bag));
+  outlet(1, get_elem(loudness_bag));
   outlet(0, get_elem(freq_bag));
 }
 

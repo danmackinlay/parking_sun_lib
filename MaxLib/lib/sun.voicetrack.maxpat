@@ -32,8 +32,9 @@
 			}
 , 			{
 				"box" : 				{
-					"annotation" : "inout loudness, 0-100",
+					"annotation" : "input loudness, 0-100",
 					"comment" : "",
+					"hint" : "input loudness, 0-100",
 					"id" : "obj-1",
 					"maxclass" : "outlet",
 					"numinlets" : 1,
@@ -198,18 +199,20 @@
 					"maxclass" : "outlet",
 					"numinlets" : 1,
 					"numoutlets" : 0,
-					"patching_rect" : [ 65.0, 635.5, 25.0, 25.0 ]
+					"patching_rect" : [ 60.0, 600.0, 25.0, 25.0 ]
 				}
 
 			}
 , 			{
 				"box" : 				{
+					"annotation" : "attack",
 					"comment" : "",
+					"hint" : "attack",
 					"id" : "obj-32",
 					"maxclass" : "outlet",
 					"numinlets" : 1,
 					"numoutlets" : 0,
-					"patching_rect" : [ 335.0, 635.5, 25.0, 25.0 ]
+					"patching_rect" : [ 330.0, 630.0, 25.0, 25.0 ]
 				}
 
 			}
