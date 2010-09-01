@@ -51,7 +51,7 @@
 					"numoutlets" : 1,
 					"outlettype" : [ "float" ],
 					"patching_rect" : [ 195.0, 225.0, 87.0, 20.0 ],
-					"text" : "/ 1000000000."
+					"text" : "/ 1073741824."
 				}
 
 			}
@@ -63,7 +63,7 @@
 					"maxclass" : "newobj",
 					"numinlets" : 1,
 					"numoutlets" : 1,
-					"outlettype" : [ "" ],
+					"outlettype" : [ "int" ],
 					"patching_rect" : [ 195.0, 195.0, 60.0, 20.0 ],
 					"text" : "sun.irand"
 				}
