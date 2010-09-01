@@ -65,12 +65,12 @@
 					"fontname" : "Arial",
 					"fontsize" : 12.0,
 					"id" : "obj-17",
-					"linecount" : 7,
+					"linecount" : 10,
 					"maxclass" : "comment",
 					"numinlets" : 1,
 					"numoutlets" : 0,
-					"patching_rect" : [ 315.0, 75.0, 161.0, 103.0 ],
-					"text" : "Max doesn't have unsigned ints available for public use AFAICT, so I use their PRNG to save headaches, with m set to 2^30-1. but here is a nice per-patcher global RNG for y'all."
+					"patching_rect" : [ 315.0, 75.0, 161.0, 144.0 ],
+					"text" : "Max doesn't have unsigned ints available for public use AFAICT, so I use their PRNG to save headaches, with m set to 2^30-1. but here is a nice per-patcher global RNG for y'all. Bang tigers out, int sets seed and triggers out, \"seed int\" just sets seed"
 				}
 
 			}
@@ -108,10 +108,10 @@
 					"id" : "obj-3",
 					"maxclass" : "newobj",
 					"numinlets" : 1,
-					"numoutlets" : 3,
-					"outlettype" : [ "", "", "" ],
-					"patching_rect" : [ 135.0, 120.0, 84.0, 20.0 ],
-					"text" : "route bang int"
+					"numoutlets" : 4,
+					"outlettype" : [ "", "", "", "" ],
+					"patching_rect" : [ 135.0, 120.0, 113.0, 20.0 ],
+					"text" : "route bang int seed"
 				}
 
 			}
@@ -134,7 +134,7 @@
 					"numinlets" : 0,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 135.0, 75.0, 25.0, 25.0 ]
+					"patching_rect" : [ 135.0, 60.0, 25.0, 25.0 ]
 				}
 
 			}
@@ -195,6 +195,15 @@
 					"hidden" : 0,
 					"midpoints" : [  ],
 					"source" : [ "obj-18", 0 ]
+				}
+
+			}
+, 			{
+				"patchline" : 				{
+					"destination" : [ "obj-37", 0 ],
+					"hidden" : 0,
+					"midpoints" : [ 207.166672, 173.5, 144.5, 173.5 ],
+					"source" : [ "obj-3", 2 ]
 				}
 
 			}
