@@ -147,8 +147,8 @@
 					"numinlets" : 1,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 135.0, 180.0, 119.0, 20.0 ],
-					"text" : "value --rng-state-1 0"
+					"patching_rect" : [ 135.0, 180.0, 123.0, 20.0 ],
+					"text" : "value ---rng-state-1 0"
 				}
 
 			}
