@@ -703,7 +703,6 @@
 						"enablehscroll" : 1,
 						"enablevscroll" : 1,
 						"devicewidth" : 0.0,
-						"visible" : 1,
 						"boxes" : [ 							{
 								"box" : 								{
 									"fontname" : "Arial",
@@ -3166,6 +3165,7 @@
 						"enablehscroll" : 1,
 						"enablevscroll" : 1,
 						"devicewidth" : 0.0,
+						"visible" : 1,
 						"boxes" : [ 							{
 								"box" : 								{
 									"bufsize" : 256,
@@ -3175,7 +3175,8 @@
 									"maxclass" : "scope~",
 									"numinlets" : 2,
 									"numoutlets" : 0,
-									"patching_rect" : [ 260.0, 450.0, 100.0, 96.0 ]
+									"patching_rect" : [ 330.0, 450.0, 100.0, 96.0 ],
+									"range" : [ 0.0, 1.0 ]
 								}
 
 							}
@@ -3718,7 +3719,7 @@
 					"maxclass" : "ezdac~",
 					"numinlets" : 2,
 					"numoutlets" : 0,
-					"patching_rect" : [ 30.0, 590.0, 45.0, 45.0 ]
+					"patching_rect" : [ 40.0, 490.0, 45.0, 45.0 ]
 				}
 
 			}
