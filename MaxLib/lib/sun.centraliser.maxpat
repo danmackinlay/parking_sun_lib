@@ -118,7 +118,8 @@
 			}
 , 			{
 				"box" : 				{
-					"comment" : "preserve std dev (0,1)",
+					"annotation" : "set param of 1 to renomralise for std dev",
+					"comment" : "renormalise std dev",
 					"id" : "obj-5",
 					"maxclass" : "inlet",
 					"numinlets" : 0,
@@ -258,19 +259,19 @@
 					"maxclass" : "inlet",
 					"numinlets" : 0,
 					"numoutlets" : 1,
-					"outlettype" : [ "float" ],
+					"outlettype" : [ "" ],
 					"patching_rect" : [ 50.0, 40.0, 25.0, 25.0 ]
 				}
 
 			}
 , 			{
 				"box" : 				{
-					"comment" : "",
+					"comment" : "exponent of skew - positive centralises",
 					"id" : "obj-26",
 					"maxclass" : "inlet",
 					"numinlets" : 0,
 					"numoutlets" : 1,
-					"outlettype" : [ "float" ],
+					"outlettype" : [ "" ],
 					"patching_rect" : [ 210.0, 40.0, 25.0, 25.0 ]
 				}
 
