@@ -21,6 +21,20 @@
 		"boxes" : [ 			{
 				"box" : 				{
 					"fontname" : "Arial",
+					"fontsize" : 12.0,
+					"id" : "obj-21",
+					"linecount" : 4,
+					"maxclass" : "comment",
+					"numinlets" : 1,
+					"numoutlets" : 0,
+					"patching_rect" : [ 260.0, 110.0, 278.0, 62.0 ],
+					"text" : "scaling factor for relative pitch centred on note e3=64=1.0, in Max's weird grouchy all-you- modern-conventions-can-get-your-damned- sensible-asses-off-my-lawn kind of way"
+				}
+
+			}
+, 			{
+				"box" : 				{
+					"fontname" : "Arial",
 					"fontsize" : 11.595187,
 					"id" : "obj-6",
 					"maxclass" : "newobj",
@@ -69,8 +83,8 @@
 					"numinlets" : 1,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 105.0, 120.0, 102.0, 20.0 ],
-					"text" : "mtof 1. @base 1."
+					"patching_rect" : [ 105.0, 120.0, 129.0, 20.0 ],
+					"text" : "mtof 1. @base 1.3348"
 				}
 
 			}
