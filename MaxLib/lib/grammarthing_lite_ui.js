@@ -14,7 +14,7 @@ var ncols=4; // default columns
 var nrows=4; // default rows
 
 var vbrgb = [1.0,1.0,1.0,1.0];
-var linesrgb = [0.1,0.1,0.1,0.2]
+var linesrgb = [0.1,0.1,0.1,0.5]
 var vmrgb = [0.9,0.5,0.5,0.75];
 var vfrgb = [1.,0.,0.2,1.];
 
@@ -45,19 +45,25 @@ function draw()
     // set how the polygons are rendered
     glclearcolor(vbrgb[0],vbrgb[1],vbrgb[2],vbrgb[3]); // set the clear color
     glclear(); // erase the background
+    //glenable("line_smooth");
     glenable("line_smooth");
-    
+    glenable("line_stipple");
+    gllinestipple(2, 43690);
+    gllinewidth(1);
+    glcolor(linesrgb);
     for (i=0; i<=16; i++) {
       x = (i/8.-1.);
       //do some background markers
-      beginstroke("basic2d");
-      strokeparam("order",1);
-      strokeparam("slices",15);
-      strokeparam("color",linesrgb);
-      strokeparam("scale",0.02);
-      strokepoint(x,0);
-      strokepoint(x,1);
-      endstroke();
+      moveto(x,0);
+      lineto(x,1);
+      // beginstroke("basic2d");
+      // strokeparam("order",1);
+      // strokeparam("slices",15);
+      // strokeparam("color",linesrgb);
+      // strokeparam("scale",0.02);
+      // strokepoint(x,0);
+      // strokepoint(x,1);
+      // endstroke();
     }
     // colstep=2./ncols; // how much to move over per column
     // rowstep=2./nrows; // how much to move over per row
