@@ -96,7 +96,7 @@
 					"numinlets" : 1,
 					"numoutlets" : 2,
 					"outlettype" : [ "float", "bang" ],
-					"patching_rect" : [ 255.0, 265.0, 50.0, 20.0 ]
+					"patching_rect" : [ 255.0, 265.0, 132.0, 20.0 ]
 				}
 
 			}
@@ -180,7 +180,7 @@
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
 					"patching_rect" : [ 205.0, 235.0, 155.0, 20.0 ],
-					"text" : "expr -ln((1+$f1)/32678)*$f2"
+					"text" : "expr -ln((1+$f1)/32768)*$f2"
 				}
 
 			}

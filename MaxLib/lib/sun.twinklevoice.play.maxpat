@@ -34,7 +34,7 @@
 					"numoutlets" : 0,
 					"patching_rect" : [ 810.0, 640.0, 37.0, 20.0 ],
 					"saved_object_attributes" : 					{
-						"attr_comment" : ""
+
 					}
 ,
 					"text" : "out 1"
@@ -1071,7 +1071,7 @@
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
 					"patching_rect" : [ 520.0, 330.0, 155.0, 20.0 ],
-					"text" : "expr -ln((1+$f1)/32678)*$f2"
+					"text" : "expr -ln((1+$f1)/32768)*$f2"
 				}
 
 			}
@@ -1099,7 +1099,7 @@
 					"numoutlets" : 1,
 					"outlettype" : [ "int" ],
 					"patching_rect" : [ 520.0, 300.0, 88.0, 20.0 ],
-					"text" : "random 32768"
+					"text" : "random 32767"
 				}
 
 			}
@@ -1211,7 +1211,7 @@
 					"numoutlets" : 0,
 					"patching_rect" : [ 120.0, 640.0, 44.0, 20.0 ],
 					"saved_object_attributes" : 					{
-						"attr_comment" : ""
+
 					}
 ,
 					"text" : "out~ 2"
@@ -1228,7 +1228,7 @@
 					"numoutlets" : 0,
 					"patching_rect" : [ 70.0, 640.0, 44.0, 20.0 ],
 					"saved_object_attributes" : 					{
-
+						"attr_comment" : ""
 					}
 ,
 					"text" : "out~ 1"
