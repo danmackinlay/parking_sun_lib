@@ -48,7 +48,7 @@
 					"numoutlets" : 1,
 					"outlettype" : [ "signal" ],
 					"patching_rect" : [ 230.0, 290.0, 35.0, 20.0 ],
-					"text" : "<~ 0"
+					"text" : ">~ 0"
 				}
 
 			}
