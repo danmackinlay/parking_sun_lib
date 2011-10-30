@@ -33,7 +33,6 @@
 					"numinlets" : 1,
 					"numoutlets" : 0,
 					"patching_rect" : [ 870.0, 650.0, 150.0, 20.0 ],
-					"presentation_rect" : [ 899.0, 642.0, 0.0, 0.0 ],
 					"text" : "timewise mean"
 				}
 
@@ -447,7 +446,7 @@
 , 			{
 				"box" : 				{
 					"annotation" : "",
-					"comment" : "",
+					"comment" : "period (mean)",
 					"hint" : "period (mean)",
 					"id" : "obj-8",
 					"maxclass" : "inlet",
@@ -463,12 +462,12 @@
 					"fontname" : "Arial",
 					"fontsize" : 12.0,
 					"id" : "obj-3",
-					"linecount" : 4,
+					"linecount" : 5,
 					"maxclass" : "comment",
 					"numinlets" : 1,
 					"numoutlets" : 0,
-					"patching_rect" : [ 780.0, 40.0, 220.0, 62.0 ],
-					"text" : "From the superCollider world, Dust-like event generator.needs CNMAT's randist by John MacCallum. god over a narrow range."
+					"patching_rect" : [ 780.0, 40.0, 220.0, 75.0 ],
+					"text" : "From the superCollider world, Dust-like event generator.needs CNMAT's randist by John MacCallum. good over a narrow range. take period, not frequency."
 				}
 
 			}
