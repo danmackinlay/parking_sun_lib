@@ -61,8 +61,8 @@
 					"maxclass" : "comment",
 					"numinlets" : 1,
 					"numoutlets" : 0,
-					"patching_rect" : [ 350.0, 180.0, 150.0, 48.0 ],
-					"text" : "same as sun.perturb, but updates the outputs when the range is changed"
+					"patching_rect" : [ 350.0, 180.0, 154.0, 48.0 ],
+					"text" : "same as sun.perturb, but updates the outputs when the range is changed."
 				}
 
 			}
