@@ -1,4 +1,5 @@
 inlets=2;
+var _notebag = {};
 
 function _to_array(ar) {
     var ar_ar = [];
@@ -9,8 +10,19 @@ function _to_array(ar) {
 };
 
 function list() {
-    post(_to_array(arguments));
-    post("\n");
-    post(inlet);
-    post("\n");
+    var ar = _to_array(arguments);
+    if (inlet===0) {
+      _maintain_notebag(ar);
+    } // else if (inlet===1) {
+     //      _choose_note(ar);
+     //    } else if (inlet===1) {
+     //      _reset_seed(ar);
+     //    }
+};
+
+function _maintain_notebag(list) {
+  post("notebag!");
+  post("\n");
+  post(list);
+  post("\n");
 };
