@@ -1,4 +1,4 @@
-inlets = 3;
+inlets = 1;
 var _notebag = -1;
 var _numbag={};
 _numbag.width = new Array;
@@ -26,38 +26,38 @@ for (var i=0; i < bagsize; i++) {
 /////// handling messages
 function list() {
     var ar = arrayfromargs(arguments);
-    if (inlet===0) {
-      _maintain_notebag(ar);
-    }
+    _maintain_notebag(ar);
+}
+function num() {
+  var ar = arrayfromargs(arguments);
+  _handle_bag_poking(_numbag, ar);
+}
+function denom() {
+  var ar = arrayfromargs(arguments);
+  _handle_bag_poking(_denombag, ar);
 }
 
-function width() {
-    var ar = arrayfromargs(arguments);
-    if (inlet===1) {
-      _maintain_ratiobag_width(ar, _numbag);
-    } else if (inlet===2) {
-      _maintain_ratiobag_width(ar, _denombag);
-    }
-};
+function up(dist) {};
+function down(dist) {};
 
-function val() {
-    var ar = arrayfromargs(arguments);
-    if (inlet===1) {
-      _maintain_ratiobag_val(ar, _numbag);
-    } else if (inlet===2) {
-      _maintain_ratiobag_val(ar, _denombag);
-    }
-};
-
-function up(dist) {}
-function down(dist) {}
-
-function bang() {
-  
-};
+function bang() {};
 
 /////// internal logic
 
+function _handle_bag_poking(which_bag, ar) {
+  //break bag refernce into pieces:
+  var selector = ar[0];
+  ar = ar.slice(1);
+  if (selector==='width') {
+    _maintain_ratiobag_width(ar, _numbag);
+    _maintain_ratiobag_width(ar, _denombag);
+  } else if (selector==='val') {
+    _maintain_ratiobag_val(ar, _numbag);
+    _maintain_ratiobag_val(ar, _denombag);
+  } else {
+    throw("unknown selector " + selector);
+  }
+}
 function _maintain_notebag(list) {
   //At the moment, this is not a bag, but a single root note.
   post("notebag!");
@@ -66,8 +66,6 @@ function _maintain_notebag(list) {
   } else if (list[0] === _notebag) {
     _notebag = -1;
   };
-  post(_notebag);
-  post();
 };
 
 function _maintain_ratiobag_width(list, bag) {
