@@ -6,8 +6,11 @@ _numbag.val = new Array;
 var _denombag = {};
 _denombag.width = new Array;
 _denombag.val = new Array;
-
-//we set the bag size so we can set default contents
+var _heldratios = {};
+var _heldnotes = {};
+var _octave_range = [0,0];
+var _all_candidates
+//we choose a bag size so we can set default contents
 var bagsize = 3;
 if (jsarguments.length >=2) {
   bagsize = jsarguments[1];
@@ -45,6 +48,9 @@ function val() {
       _maintain_ratiobag_val(ar, _denombag);
     }
 };
+
+function up(dist) {}
+function down(dist) {}
 
 function bang() {
   
