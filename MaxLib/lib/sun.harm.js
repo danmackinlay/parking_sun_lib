@@ -121,7 +121,15 @@ function seedtrig(bool) {
   if (bool) { _seedtrig = true; }
   else { _seedtrig = false; };
 }
-
+function pause() {
+  //transport stopped. halt all hung notes
+  for (var note in _held_note_set) {
+    _stop_note(note);
+  };
+}
+function play() {
+  //transport resumed. retrigger notes?
+}
 /////// internal logic
 
 function _handle_bag_poking(which_bag, ar) {
