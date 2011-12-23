@@ -48,6 +48,7 @@ var _octave_range = [0,0];
 var _all_candidates;
 var _notetrig = true;
 var _chordtrig = false;
+var _seedtrig = false;
 
 //we choose a bag size so we can set default contents
 var bagsize = 3;
@@ -86,6 +87,7 @@ function seed(seed) {
   _rng.seed_ = seed;
   //first result after reseed is rubbish.
   _rng.random();
+  if (_seedtrig) { bang(); };
 };
 
 //actually generate a new pitch set
@@ -102,10 +104,17 @@ function chordnotes(num) {
 function chordtrig(bool) {
   if (bool) { _chordtrig = true; }
   else { _chordtrig = false; };
+  post("chordtrig", _chordtrig);
 }
 function notetrig(bool) {
   if (bool) { _notetrig = true; }
   else { _notetrig = false; };
+  post("notetrig", _notetrig);
+}
+function seedtrig(bool) {
+  if (bool) { _seedtrig = true; }
+  else { _seedtrig = false; };
+  post("notetrig", _seedtrig);
 }
 
 /////// internal logic
@@ -213,13 +222,13 @@ function _play_notes(new_note_set) {
 function _start_note(note) {
   //if the given note is not playing already, play it.
   post("play", note);
-  outlet(0, [note, 64]);
-  _held_note_set[note] = true;
+  outlet(0, +note, 100);
+  _held_note_set[note] = 100;
 }
 function _stop_note(note) {
   //if the given note is playing, stop it.
   post("stop", note);
-  outlet(0, [note, 0]);
+  outlet(0, +note, 0);
   delete _held_note_set[note];
 }
 function _mtof(f) {
