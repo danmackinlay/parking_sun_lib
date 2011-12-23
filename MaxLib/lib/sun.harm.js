@@ -35,10 +35,10 @@ inlets = 1;
 var _basenote = 69;
 var _basefreq = 440;
 var _numbag = {};
-_numbag.width = new Array;
+_numbag.weights = new Array;
 _numbag.val = new Array;
 var _denombag = {};
-_denombag.width = new Array;
+_denombag.weights = new Array;
 _denombag.val = new Array;
 var _rng = new PseudoRandom();
 var _chordnotes = 0;
@@ -57,9 +57,9 @@ if (jsarguments.length >=2) {
 }
 
 for (var i=0; i < bagsize; i++) {
-  _numbag.width[i] = 0;
+  _numbag.weights[i] = 0;
   _numbag.val[i] = 1;
-  _denombag.width[i] = 0;
+  _denombag.weights[i] = 0;
   _denombag.val[i] = 1;
 }
 
@@ -69,12 +69,12 @@ function base(note) {
   _maintain_basenote(note);
   if (_notetrig) { bang();};
 }
-// numerator val or width lists
+// numerator val or weights lists
 function num() {
   var ar = arrayfromargs(arguments);
   _handle_bag_poking(_numbag, ar);
 }
-// denominator val or width lists
+// denominator val or weights lists
 function denom() {
   var ar = arrayfromargs(arguments);
   _handle_bag_poking(_denombag, ar);
@@ -123,8 +123,8 @@ function _handle_bag_poking(which_bag, ar) {
   //break bag refernce into pieces:
   var selector = ar[0];
   ar = ar.slice(1);
-  if (selector==='width') {
-    _maintain_ratiobag_width(ar, which_bag);
+  if (selector==='weight') {
+    _maintain_ratiobag_weights(ar, which_bag);
   } else if (selector==='val') {
     _maintain_ratiobag_val(ar, which_bag);
   } else {
@@ -136,8 +136,8 @@ function _maintain_basenote(note) {
   _basefreq = _mtof(_basenote);
 };
 
-function _maintain_ratiobag_width(list, bag) {
-  bag.width[list[0]] = list[1];
+function _maintain_ratiobag_weights(list, bag) {
+  bag.weights[list[0]] = list[1];
 };
 
 function _maintain_ratiobag_val(list, bag) {
@@ -151,12 +151,12 @@ function _generate_ratio_set() {
   var num;
   var denom;
   
-  num_cdf = _cdf(_numbag.width);
-  denom_cdf = _cdf(_denombag.width);
+  num_cdf = _cdf(_numbag.weights);
+  denom_cdf = _cdf(_denombag.weights);
   
   if (num_cdf === null || denom_cdf === null) {
     // generate empty note array if our weights are 0
-    post("exploded- no width array");
+    post("bailed- no weights array");
     post();
     return [];
   }
