@@ -25,7 +25,9 @@ PseudoRandom.prototype.random = function() {
   // % stops foolishness with shoddy RNG overflows
   return (this.seed_ * PseudoRandom.ONE_OVER_M) % 1.0;
 };
-
+PseudoRandom.prototype.randint = function(lo, hiplus1) {
+  return Math.floor(this.random() * (hiplus1-lo)) + lo;
+};
 
 //////// Max Initialisation
 inlets = 1;
@@ -49,6 +51,8 @@ var _all_candidates;
 var _notetrig = true;
 var _chordtrig = false;
 var _seedtrig = false;
+var _octaves_up = 0;
+var _octaves_down = 0;
 
 //we choose a bag size so we can set default contents
 var bagsize = 3;
@@ -80,8 +84,12 @@ function denom() {
   _handle_bag_poking(_denombag, ar);
 }
 // scale ranges
-function up(dist) {};
-function down(dist) {};
+function up(dist) {
+  _octaves_up = Math.floor(dist);
+};
+function down(dist) {
+  _octaves_down = Math.floor(dist);
+};
 //PRNG seeding
 function seed(seed) {
   _rng.seed_ = seed;
@@ -104,17 +112,14 @@ function chordnotes(num) {
 function chordtrig(bool) {
   if (bool) { _chordtrig = true; }
   else { _chordtrig = false; };
-  post("chordtrig", _chordtrig);
 }
 function notetrig(bool) {
   if (bool) { _notetrig = true; }
   else { _notetrig = false; };
-  post("notetrig", _notetrig);
 }
 function seedtrig(bool) {
   if (bool) { _seedtrig = true; }
   else { _seedtrig = false; };
-  post("notetrig", _seedtrig);
 }
 
 /////// internal logic
@@ -193,9 +198,21 @@ function _index_cdf(cdf, f) {
 };
 function _squash_ratio_set_to_midi(ratio_set) {
   //convert ratios to MIDI notes. May involve shrinking note list.
+  //handling octave wrapping is easy in MIDI domain so we do it here
   var note_set = {};
   var note_list = ratio_set.map(function(xy) {
-    return Math.floor(_ftom((xy[0]/xy[1]) * _basefreq) + 0.5);
+    var octavise = 0;
+    octavise = 12 * _rng.randint(_octaves_down, _octaves_up + 1);
+    var candidate_note = _real_modulo(
+      Math.floor(_ftom((xy[0]/xy[1]) * _basefreq) + 0.5) - _basenote,
+      12
+    ) + _basenote + octavise;
+    if (candidate_note>127) {
+      candidate_note = candidate_note - 12 * Math.ceil((candidate_note-127)/12);
+    } else if (candidate_note<0) {
+      candidate_note = candidate_note - 12 * Math.floor(candidate_note/12);
+    }
+    return candidate_note;
   });
   note_list.forEach(function(val, idx) {
     note_set[val] = true;
@@ -221,13 +238,11 @@ function _play_notes(new_note_set) {
 
 function _start_note(note) {
   //if the given note is not playing already, play it.
-  post("play", note);
   outlet(0, +note, 100);
   _held_note_set[note] = 100;
 }
 function _stop_note(note) {
   //if the given note is playing, stop it.
-  post("stop", note);
   outlet(0, +note, 0);
   delete _held_note_set[note];
 }
@@ -237,3 +252,9 @@ function _mtof(f) {
 function _ftom(m) {
   return 69 + (1/.057762265) * Math.log(m/440);
 }
+function _real_modulo(a, b) {
+  //cribbed from google closure library
+  var r = a % b;
+  // If r and b differ in sign, add b to wrap the result to the correct sign.
+  return (r * b < 0) ? r + b : r;
+};
