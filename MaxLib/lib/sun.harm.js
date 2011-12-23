@@ -162,7 +162,7 @@ function _generate_ratio_set() {
   }
   for (var i=0; i < _chordnotes; i++) {
     num = _numbag.val[_index_cdf(num_cdf, _rng.random())];
-    denom = _numbag.val[_index_cdf(denom_cdf, _rng.random())];
+    denom = _denombag.val[_index_cdf(denom_cdf, _rng.random())];
     new_pitch_set.push([num, denom]);
   };
   return new_pitch_set;
