@@ -6,11 +6,6 @@
 * relative paths must start wih a "/" separator
 * this function uses eval() so please be careful
 *
-* include(this,"/local.js"); // same directory
-* include(this,"/lib/functions/below.js"); // navigate lower
-* include(this,"/../../above.js"); // navigate higher
-* include(this,"/../../sub1/sub2/both.js"); // combine both
-* include(this,"Macintosh HD:/Users/directory/sub-directory/other.js"); // absolute path
 */
 
 function include(scope,dest) {
@@ -20,18 +15,20 @@ function include(scope,dest) {
 	var levels = struct.exec(dest)[1].length/3;
 	var name = struct.exec(dest)[3];
 	var target;
-	if (dest.charAt(0) != "/") {
-		target = dest;
-	} else if (!levels) {
-		target = scope.patcher.filepath.match(parent)[1]+name;
-	} else {
-		target = scope.patcher.filepath;
-		for (i=-1; i<levels; i++) {
-			target = target.slice(0,target.lastIndexOf("/",target.length-2));
-		}
-		target += name;
-	}
-	var f = new File(target,"read","TEXT");
+	// What the hell is this stuff about?
+	//  native path parser works fine, AFAICT. In fact, better.
+  // if (dest.charAt(0) != "/") {
+  //  target = dest;
+  // } else if (!levels) {
+  //  target = scope.patcher.filepath.match(parent)[1]+name;
+  // } else {
+  //  target = scope.patcher.filepath;
+  //  for (i=-1; i<levels; i++) {
+  //    target = target.slice(0,target.lastIndexOf("/",target.length-2));
+  //  }
+  //  target += name;
+  // }
+	var f = new File(dest, "read","TEXT");
 	f.open();
 	if (f.isopen) {
 		while(f.position<f.eof) {
