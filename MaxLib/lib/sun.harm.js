@@ -2,43 +2,70 @@
 inlets = 1;
 
 //////// library functions
-lib = {}
-include(lib, "sun.library.js");
+var lib;
 
-//////// Initialise JS state
-var _basenote = 69;
-var _basefreq = 440;
-var _numbag = {};
-_numbag.weights = new Array;
-_numbag.val = new Array;
-var _denombag = {};
-_denombag.weights = new Array;
-_denombag.val = new Array;
-var _rng = new lib.PseudoRandom();
-var _chordnotes = 0;
-var _ratio_set = [];
-var _held_note_set = [];
-var _octave_range = [0,0];
+//////// Declare JS vars
+var _basenote;
+var _basefreq;
+var _numbag;
+var _denombag;
+var _rng;
+var _chordnotes;
+var _ratio_set;
+var _held_note_set;
+var _octave_range;
 var _all_candidates;
-var _notetrig = true;
-var _chordtrig = false;
-var _seedtrig = false;
-var _octaves_up = 0;
-var _octaves_down = 0;
+var _notetrig;
+var _chordtrig;
+var _seedtrig;
+var _octaves_up;
+var _octaves_down;
+var _bagsize;
 
-//we choose a bag size so we can set default contents
-var bagsize = 3;
-if (jsarguments.length >=2) {
-  bagsize = jsarguments[1];
+function loadbang() {
+  //Init global vars in this function to ease debugging.
+  //You might need to retrigger init by sending a loadbang msg.
+  
+  //////// library functions
+  lib = {}
+  
+  sun_include(lib, "sun.library.js");
+  
+  //////// assign inititals values to JS vars
+  _basenote = 69;
+  _basefreq = 440;
+  _numbag = new Object;
+  _numbag.weights = new Array;
+  _numbag.val = new Array;
+  _denombag = new Object;
+  _denombag.weights = new Array;
+  _denombag.val = new Array;
+  _rng = new lib.PseudoRandom();
+  _chordnotes = 0;
+  _ratio_set = new Array;
+  _held_note_set = new Array;
+  _octave_range = [0,0];
+  _all_candidates;
+  _notetrig = true;
+  _chordtrig = false;
+  _seedtrig = false;
+  _octaves_up = 0;
+  _octaves_down = 0;
+  
+  
+  //we choose a bag size so we can set default contents
+  _bagsize = 3;
+  
+  if (jsarguments.length >=2) {
+    _bagsize = jsarguments[1];
+  }
+  for (var i=0; i < _bagsize; i++) {
+    _numbag.weights[i] = 0;
+    _numbag.val[i] = 1;
+    _denombag.weights[i] = 0;
+    _denombag.val[i] = 1;
+  }
 }
-
-for (var i=0; i < bagsize; i++) {
-  _numbag.weights[i] = 0;
-  _numbag.val[i] = 1;
-  _denombag.weights[i] = 0;
-  _denombag.val[i] = 1;
-}
-
 /////// handling messages
 // number lists are presumed to be MIDI notes
 function base(note) {
@@ -64,9 +91,7 @@ function down(dist) {
 };
 //PRNG seeding
 function seed(seed) {
-  _rng.seed_ = seed;
-  //first result after reseed is rubbish.
-  _rng.random();
+  _rng = new lib.PseudoRandom(seed);
   if (_seedtrig) { bang(); };
 };
 
@@ -157,11 +182,11 @@ function _cdf(weights) {
   var cdf = new Array;
   var accum = 0;
   var top;
-  for (var i=0; i < bagsize; i++) {
+  for (var i=0; i < _bagsize; i++) {
     accum = accum + weights[i];
     cdf[i] = accum;
   }
-  top = cdf[bagsize-1];
+  top = cdf[_bagsize-1];
   if (top<=0) {
     //no weights! to avoid NaNs we return a null, which must be checked for.
     return null;
