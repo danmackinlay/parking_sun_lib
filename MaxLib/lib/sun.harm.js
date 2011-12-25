@@ -143,7 +143,7 @@ function _handle_bag_poking(which_bag, ar) {
 }
 function _maintain_basenote(note) {
   _basenote = note;
-  _basefreq = _mtof(_basenote);
+  _basefreq = lib.mtof(_basenote);
 };
 
 function _maintain_ratiobag_weights(list, bag) {
@@ -161,8 +161,8 @@ function _generate_ratio_set() {
   var num;
   var denom;
   
-  num_cdf = _cdf(_numbag.weights);
-  denom_cdf = _cdf(_denombag.weights);
+  num_cdf = lib.cdf(_numbag.weights);
+  denom_cdf = lib.cdf(_denombag.weights);
   
   if (num_cdf === null || denom_cdf === null) {
     // generate empty note array if our weights are 0
@@ -171,35 +171,11 @@ function _generate_ratio_set() {
     return [];
   }
   for (var i=0; i < _chordnotes; i++) {
-    num = _numbag.val[_index_cdf(num_cdf, _rng.random())];
-    denom = _denombag.val[_index_cdf(denom_cdf, _rng.random())];
+    num = _numbag.val[lib.index_cdf(num_cdf, _rng.random())];
+    denom = _denombag.val[lib.index_cdf(denom_cdf, _rng.random())];
     new_pitch_set.push([num, denom]);
   };
   return new_pitch_set;
-};
-function _cdf(weights) {
-  //produce a normalised cdf of distribution weights
-  var cdf = new Array;
-  var accum = 0;
-  var top;
-  for (var i=0; i < _bagsize; i++) {
-    accum = accum + weights[i];
-    cdf[i] = accum;
-  }
-  top = cdf[_bagsize-1];
-  if (top<=0) {
-    //no weights! to avoid NaNs we return a null, which must be checked for.
-    return null;
-  } else {
-    return cdf.map(function (x) { return x/top ;});
-  }
-};
-function _index_cdf(cdf, f) {
-  //If my calculations are correct, this is going to give me the index of the
-  //first value greater than the lookup.
-  var i;
-  for (i=0; cdf[i]<f; i++) { };
-  return i;
 };
 function _squash_ratio_set_to_midi(ratio_set) {
   //convert ratios to MIDI notes. May involve shrinking note list.
@@ -208,8 +184,8 @@ function _squash_ratio_set_to_midi(ratio_set) {
   var note_list = ratio_set.map(function(xy) {
     var octavise = 0;
     octavise = 12 * _rng.randint(_octaves_down, _octaves_up + 1);
-    var candidate_note = _real_modulo(
-      Math.floor(_ftom((xy[0]/xy[1]) * _basefreq) + 0.5) - _basenote,
+    var candidate_note = lib.real_modulo(
+      Math.floor(lib.ftom((xy[0]/xy[1]) * _basefreq) + 0.5) - _basenote,
       12
     ) + _basenote + octavise;
     if (candidate_note>127) {
@@ -251,15 +227,3 @@ function _stop_note(note) {
   outlet(0, +note, 0);
   delete _held_note_set[note];
 }
-function _mtof(f) {
-  return 440 * Math.exp(0.057762265 * (f - 69));
-}
-function _ftom(m) {
-  return 69 + (1/.057762265) * Math.log(m/440);
-}
-function _real_modulo(a, b) {
-  //cribbed from google closure library
-  var r = a % b;
-  // If r and b differ in sign, add b to wrap the result to the correct sign.
-  return (r * b < 0) ? r + b : r;
-};
