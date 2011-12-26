@@ -65,3 +65,29 @@ function real_modulo(a, b) {
   // If r and b differ in sign, add b to wrap the result to the correct sign.
   return (r * b < 0) ? r + b : r;
 };
+function obj_string(obj, depth) {
+  //max has shit debug printing.
+  if (!depth) {depth=0;};
+  var str = "{\n";
+  for (var property in obj) {
+    var val = obj[property];
+    for (var i=0; i < depth; i++) {
+      str = str + "  ";
+    }
+    str = str + property + ":";
+    if (typeof val == "object") {
+      str = str + obj_string(val, depth+1);
+    }
+    str = str + "\n";
+  }
+  str = str + "}\n";
+  return str;
+}
+function obj_keys(obj) {
+  //max has shit debug printing.
+  var keys = new Array;
+  for (var property in obj) {
+    keys.push(property);
+  }
+  return keys;
+}
