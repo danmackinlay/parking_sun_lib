@@ -47,9 +47,9 @@ function bang() {
   post("trackb", current_clip.id, current_clip.type);
   //current_clip.goto("clip_slots " + playing_id);
   post("clip", current_clip.info);
-  post("clip_slots " + playing_idx, current_clip.info);
+  post("CLIP", "length", current_clip.get("length"), "loop_start", current_clip.get("loop_start"), "loop_end", current_clip.get("loop_end"), "playing_position", current_clip.get("playing_position"));
   post();
-  post("track", track.id);
+  post("clip_slots " + playing_idx, current_clip.info);
   post();
 }
 
