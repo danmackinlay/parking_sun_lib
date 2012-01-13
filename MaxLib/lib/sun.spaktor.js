@@ -19,6 +19,9 @@ var current_clip_slot;
 var clip_meta = {};
 
 function bang() {
+  init();
+}
+function init() {
   var playing_idx;
   var playing_id;
   //init
@@ -39,19 +42,19 @@ function bang() {
   playing_id = track.get('clip_slots')[playing_idx*2+1];
   post("clipsy", "IDX", playing_idx, "ID", playing_id, "type", typeof(playing_id));
   post();
-
   current_clip_slot_path = track.path.slice(1,-1) + " clip_slots "+ track.id;
   current_clip_slot = new LiveAPI(null, current_clip_slot_path);
   current_clip = new LiveAPI(null, current_clip_slot_path+ " clip");
-  //current_clip.id = track_id;
   post("trackb", current_clip.id, current_clip.type);
-  //current_clip.goto("clip_slots " + playing_id);
-  post("clip", current_clip.info);
   post("CLIP", "length", current_clip.get("length"), "loop_start", current_clip.get("loop_start"), "loop_end", current_clip.get("loop_end"), "playing_position", current_clip.get("playing_position"));
   post();
-  post("clip_slots " + playing_idx, current_clip.info);
+}
+function set_loop(state) {
+  init();
+  current_clip.set('looping', state);
   post();
 }
+
 
 //Clip members
 /*
