@@ -48,13 +48,17 @@ function init() {
   post("trackb", current_clip.id, current_clip.type);
   post("CLIP", "length", current_clip.get("length"), "loop_start", current_clip.get("loop_start"), "loop_end", current_clip.get("loop_end"), "playing_position", current_clip.get("playing_position"));
   post();
+  _display_loop(current_clip.get('looping'));
 }
-function set_loop(state) {
+function loop(state) {
   init();
   current_clip.set('looping', state);
+  _display_loop(state);
   post();
 }
-
+function _display_loop(state) {
+  outlet(0, "loop", "set", state);
+}
 
 //Clip members
 /*
