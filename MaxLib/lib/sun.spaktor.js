@@ -8,6 +8,8 @@ TODO:
   changed.
 * remember all loop points for all clips
 * ...and persist across sessions?
+* support Track method jump_in_running_session_clip
+* check that clip is either armed or midi
 
 */
 var track;
@@ -17,8 +19,15 @@ var current_clip;
 var current_clip_slot_path;
 var current_clip_slot;
 var clip_meta = {};
+var notional_start = 0;
+var notional_end = 16;
+var inited = false;
+var _looplen = 16;
+var _looppos = 0;
+var looping = false;
 
 function bang() {
+  inited = true;
   init();
 }
 function init() {
@@ -37,7 +46,7 @@ function init() {
   // playing_slot_index, fire_slot_index
   playing_idx = track.get("playing_slot_index");
   
-  // check out this indexing bullshit - every second entry in the array is the
+  // check out this indexing bullshit: every second entry in the array is the
   // string "id". FFS.
   playing_id = track.get('clip_slots')[playing_idx*2+1];
   post("clipsy", "IDX", playing_idx, "ID", playing_id, "type", typeof(playing_id));
@@ -51,11 +60,35 @@ function init() {
   _display_loop(current_clip.get('looping'));
 }
 function loop(state) {
+  var here = current_clip.get("playing_position");
+  if (inited===false) {post("loop called before init"); return ;};
   init();
   current_clip.set('looping', state);
+  //TODO: get global quantization for this calc
+  notional_end = Math.floor(here)+1;
+  notional_start = notional_end - looplen;
   _display_loop(state);
+  _update_loop();
   post();
 }
+function looplen(val) {
+  //could this be handled more gracefully? w/ two loop len vars?
+  _looplen = Math.max(Math.floor(val*4 + 0.5)/4, notional_end-notional_start);
+  _update_loop();
+}
+function looppos(val) {
+  _looppos = val;
+  _update_loop();
+}
+function _update_loop() {
+  var notional_loop_len = notional_end - notional_start;
+  var actual_loop_start = Math.floor(
+    ((notional_loop_len - _looplen) * _looppos + actual_loop_start)
+     * 4 + 0.5);
+  var actual_loop_end = actual_loop_start + _looplen;
+  current_clip.set("loop_start", actual_loop_start);
+  current_clip.set("loop_end", actual_loop_end);
+};
 function _display_loop(state) {
   outlet(0, "loop", "set", state);
 }
