@@ -28,9 +28,10 @@ function _voice(ar) {
       delete _notes_polys[String(pitch)];
       delete _polys_notes[String(poly)];
       delete _notes_data[String(pitch)];
-    
+      
+      ar.unshift(0);
       outlet(0, "target", (poly + 1));
-      outlet(0, ar);
+      outlet.apply(this, ar);
       outlet(0, "target", 0);
     } //else, spurious note off. Ignore.
   } else {
@@ -44,9 +45,10 @@ function _voice(ar) {
     if (poly>=0) {
       _notes_polys[String(pitch)] = poly;
       _polys_notes[String(poly)] = pitch;
-      _notes_data[String(pitch)] = ar;      
+      _notes_data[String(pitch)] = ar;
+      ar.unshift(0);
       outlet(0, "target", (poly + 1));
-      outlet(0, ar);
+      outlet.apply(this, ar);
       outlet(0, "target", 0);
     }
   }

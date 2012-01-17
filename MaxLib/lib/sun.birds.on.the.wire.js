@@ -1,7 +1,11 @@
 /* 
 Maintain a list of agents who drunkenly walk to preserve distribution of
 impulses according to prescribed density and incoming held note velocity,
-in the mean
+in the mean.
+
+TODO: reseedable RNG
+Document params.
+
 */
 
 //////// Max Initialisation
@@ -12,11 +16,15 @@ var lib;
 
 //////// Declare global JS vars
 var _rng;
-var _ideal_notebag;
-var _held_notebag;
-var _response;
-var _range;
-var _intensity;
+
+//what to converge to
+var _ideal_notebag = {};
+// what notes are converging
+var _held_notebag = {};
+// howconvergent the walk is
+var _response = 0.5;
+// how minute the probability distribution levels are.
+var _range = 0.1;
 
 function loadbang() {
   //Init global vars in this function to ease debugging.
@@ -29,11 +37,6 @@ function loadbang() {
   _rng = new lib.PseudoRandom();
   
   //////// assign initial values to JS vars
-  _ideal_notebag = {};
-  _held_notebag = {};
-  _intensity = 10;
-  _response = 0.5;
-  _range = 0.1;
 };
 /////// handling messages
 // number lists are presumed to be MIDI notes
@@ -48,14 +51,11 @@ function response(val) {
 function range(val) {
   _range = val;
 };
-function intensity(val) {
-  _intensity = val;
-};
 function list(pitch, vel) {
   if (vel) {
-    _ideal_notebag[pitch] = vel/127;
+    _ideal_notebag[String(pitch)] = vel/127;
   } else {
-    delete _ideal_notebag[pitch];
+    delete _ideal_notebag[String(pitch)];
   }
 };
 //iterate the drunken walk for each note
