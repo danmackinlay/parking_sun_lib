@@ -13,8 +13,11 @@ TODO:
 * create a function to set clip params then check that the setting "took" by
   getting them again. This should catch, e.g. illegal loop points, or whatever
   it is that explodes the loop.
-* When looping, either or both of _looplen and _looppos need to be set to
-  allow cause the loop to be in a nice place relative to the play cursor.
+* When looping, either or both of _looplen and _looppos need to be set in teh
+  UI to allow cause the loop to be in a nice place relative to the play
+  cursor.
+* UI can be set with a delay using Task constructor arguemnts - see
+  https://github.com/rec/swirly/blob/master/js/test_tasker.js
 */
 var track;
 var track_id;
@@ -30,6 +33,9 @@ var _looplen = 8;
 var _hiddenlen = 8;
 var _looppos = 0;
 var _looping = false;
+var _looplentask = new Task(function(){}, this);
+var _hiddenlentask = new Task(function(){}, this);
+var _looppostask = new Task(function(){}, this);
 
 /*
 This rigmarole makes sure that this JS plays nicely with both autowatch and
@@ -46,7 +52,7 @@ delayed_start.execute();
 function bang() {
   inited = true;
   init();
-}
+};
 function init() {
   /* set up liveapi to point at the correct clip etc.
   return false if this fails (e.g. because there is nothing playing), else
@@ -84,7 +90,7 @@ function init() {
   post();
   _display_loop(current_clip.get('looping'));
   return true;
-}
+};
 function loop(state) {
   var here;
   var active;
@@ -112,34 +118,46 @@ function loop(state) {
   _display_loop(state);
   _update_loop();
   post();
-}
+};
 function looplen(val) {
-  _looplen = Math.min(val, notional_end-notional_start);
+  _looplen = Math.min(val, _hiddenlen);
+  if (val>_looplen) {_update_looplen_ui(val);};
   _update_loop();
+};
+function _update_looplen_ui(val) {
+  if (_looplen !== val) {
+    if (hasOwnProperty(_looplentask, 'cancel')) {
+      _looplentask.cancel();
+    }
+    _looplentask = new Task(
+      function(v) {
+        outlet(0, "set", "looplen", v);
+      }, this, val).schedule(100);
+  };
 }
 function hiddenlen(val) {
   _hiddenlen = val;
+  //Arse - this will double-call _update_loop. Need a controller here.
+  looplen(Math.min(val, _looplen));
   _update_loop();
-}
+};
 function looppos(val) {
   _looppos = val;
   _update_loop();
-}
+};
 function _update_loop() {
-  var notional_loop_len;
   var actual_loop_start;
   var actual_loop_end;
   
   if (inited===false) {post("_update_loop called before init"); return ;};
   if (_looping===0) {post("_update_loop called when not looping"); return ;};
   
-  notional_loop_len = notional_end - notional_start;
   actual_loop_start = Math.floor(
     ((_hiddenlen - _looplen) * _looppos + notional_start)
      * 4 + 0.5)/4;
   actual_loop_end = actual_loop_start + _looplen;
   post("CLIP PARTY");
-  post("notional_start", notional_start, "notional_end", notional_end,  "notional_loop_len", notional_loop_len);
+  post("notional_start", notional_start, "notional_end", notional_end);
   post( "_looppos", _looppos, "_looplen", _looplen, "actual_loop_start", actual_loop_start, "actual_loop_end", actual_loop_end);
   post();
   
@@ -147,11 +165,10 @@ function _update_loop() {
   post(current_clip.set('loop_end', actual_loop_end));
   post();
 };
-
 function _display_loop(state) {
   _looping = state;
   outlet(0, "loop", "set", state);
-}
+};
 
 //Clip members
 /*
