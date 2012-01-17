@@ -9,8 +9,12 @@ TODO:
 * remember all loop points for all clips
 * ...and persist across sessions?
 * support Track method jump_in_running_session_clip
-* check that clip is either armed or midi
-
+* check that clip is either warped or midi
+* create a function to set clip params then check that the setting "took" by
+  getting them again. This should catch, e.g. illegal loop points, or whatever
+  it is that explodes the loop.
+* When looping, either or both of _looplen and _looppos need to be set to
+  allow cause the loop to be in a nice place relative to the play cursor.
 */
 var track;
 var track_id;
@@ -22,13 +26,14 @@ var clip_meta = {};
 var notional_start = 0;
 var notional_end = 16;
 var inited = false;
-var _looplen = 16;
+var _looplen = 8;
+var _hiddenlen = 8;
 var _looppos = 0;
-var looping = false;
+var _looping = false;
 
 /*
 This rigmarole makes sure that this JS plays nicely with both autowatch and
-the LiveAPI, by having it output a bang shortly after it wakes. this can be
+the LiveAPI, by having it output a bang shortly after it wakes. This can be
 used to cause the object to initialise itself.
 
 Some kind of flag setting on a Global might do the trick too. But whatever.
@@ -83,21 +88,37 @@ function init() {
 function loop(state) {
   var here;
   var active;
+  var offset = 0;
   if (inited===false) {post("loop called before init"); return ;};
   active = init();
   if (active===false) {post("failed to find playing loop."); return ;};
   here = current_clip.get("playing_position");
+  post("LOOPERIZING");
+  post();
   current_clip.set('looping', state);
   //TODO: get global quantization for this calc
-  notional_end = Math.floor(here)+1;
-  notional_start = notional_end - looplen;
+  if (state==1) {
+    notional_end = Math.floor(here)+1;
+    notional_start = notional_end - _hiddenlen;
+    if (notional_start<0) {
+      offset = Math.ceil(-notional_start/4)*4;
+    }
+    notional_start = notional_start + offset;
+    notional_end = notional_end + offset;
+  
+    post(here, offset, notional_start, notional_end);
+    post();
+  };
   _display_loop(state);
   _update_loop();
   post();
 }
 function looplen(val) {
-  //could this be handled more gracefully? w/ two loop len vars?
-  _looplen = Math.max(Math.floor(val*4 + 0.5)/4, notional_end-notional_start);
+  _looplen = Math.min(val, notional_end-notional_start);
+  _update_loop();
+}
+function hiddenlen(val) {
+  _hiddenlen = val;
   _update_loop();
 }
 function looppos(val) {
@@ -105,17 +126,30 @@ function looppos(val) {
   _update_loop();
 }
 function _update_loop() {
-  var notional_loop_len = notional_end - notional_start;
-  var actual_loop_start = Math.floor(
-    ((notional_loop_len - _looplen) * _looppos + actual_loop_start)
-     * 4 + 0.5);
-  var actual_loop_end = actual_loop_start + _looplen;
-  if (inited===false) {post("_update_loop called before init"); return ;};
+  var notional_loop_len;
+  var actual_loop_start;
+  var actual_loop_end;
   
-  current_clip.set("loop_start", actual_loop_start);
-  current_clip.set("loop_end", actual_loop_end);
+  if (inited===false) {post("_update_loop called before init"); return ;};
+  if (_looping===0) {post("_update_loop called when not looping"); return ;};
+  
+  notional_loop_len = notional_end - notional_start;
+  actual_loop_start = Math.floor(
+    ((_hiddenlen - _looplen) * _looppos + notional_start)
+     * 4 + 0.5)/4;
+  actual_loop_end = actual_loop_start + _looplen;
+  post("CLIP PARTY");
+  post("notional_start", notional_start, "notional_end", notional_end,  "notional_loop_len", notional_loop_len);
+  post( "_looppos", _looppos, "_looplen", _looplen, "actual_loop_start", actual_loop_start, "actual_loop_end", actual_loop_end);
+  post();
+  
+  post(current_clip.set('loop_start', actual_loop_start));
+  post(current_clip.set('loop_end', actual_loop_end));
+  post();
 };
+
 function _display_loop(state) {
+  _looping = state;
   outlet(0, "loop", "set", state);
 }
 
