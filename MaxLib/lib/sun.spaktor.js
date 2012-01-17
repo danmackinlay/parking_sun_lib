@@ -26,6 +26,18 @@ var _looplen = 16;
 var _looppos = 0;
 var looping = false;
 
+/*
+This rigmarole makes sure that this JS plays nicely with both autowatch and
+the LiveAPI, by having it output a bang shortly after it wakes. this can be
+used to cause the object to initialise itself.
+
+Some kind of flag setting on a Global might do the trick too. But whatever.
+*/
+
+var delayed_start = new Task(function () {outlet(0, "alive", "bang")}, this);
+delayed_start.interval = 50;
+delayed_start.execute();
+
 function bang() {
   inited = true;
   init();
@@ -86,6 +98,8 @@ function _update_loop() {
     ((notional_loop_len - _looplen) * _looppos + actual_loop_start)
      * 4 + 0.5);
   var actual_loop_end = actual_loop_start + _looplen;
+  if (inited===false) {post("_update_loop called before init"); return ;};
+  
   current_clip.set("loop_start", actual_loop_start);
   current_clip.set("loop_end", actual_loop_end);
 };
