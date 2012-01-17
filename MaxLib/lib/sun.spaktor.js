@@ -43,9 +43,12 @@ function bang() {
   init();
 }
 function init() {
+  /* set up liveapi to point at the correct clip etc.
+  return false if this fails (e.g. because there is nothing playing), else
+  return true.
+  */
   var playing_idx;
   var playing_id;
-  //init
   track = new LiveAPI(null, "this_device canonical_parent");
   track_id = track.id;
   // look at this stupidity: LiveAPI.path returns a string with *embedded
@@ -57,6 +60,11 @@ function init() {
   
   // playing_slot_index, fire_slot_index
   playing_idx = track.get("playing_slot_index");
+  if (playing_idx < 0) {
+    post("no clip playing!");
+    _display_loop(0);
+    return false;
+  }
   
   // check out this indexing bullshit: every second entry in the array is the
   // string "id". FFS.
@@ -70,11 +78,15 @@ function init() {
   post("CLIP", "length", current_clip.get("length"), "loop_start", current_clip.get("loop_start"), "loop_end", current_clip.get("loop_end"), "playing_position", current_clip.get("playing_position"));
   post();
   _display_loop(current_clip.get('looping'));
+  return true;
 }
 function loop(state) {
-  var here = current_clip.get("playing_position");
+  var here;
+  var active;
   if (inited===false) {post("loop called before init"); return ;};
-  init();
+  active = init();
+  if (active===false) {post("failed to find playing loop."); return ;};
+  here = current_clip.get("playing_position");
   current_clip.set('looping', state);
   //TODO: get global quantization for this calc
   notional_end = Math.floor(here)+1;
