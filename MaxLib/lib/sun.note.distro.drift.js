@@ -25,6 +25,9 @@ var _held_notebag = {};
 var _response = 0.5;
 // how minute the probability distribution levels are.
 var _range = 0.1;
+var delayed_start = new Task(function () {outlet(0, "alive", "bang")}, this);
+delayed_start.interval = 50;
+delayed_start.execute();
 
 function loadbang() {
   //Init global vars in this function to ease debugging.
@@ -137,9 +140,9 @@ function _update_outs(dests) {
 
 function _tweak_note(note, val) {
   _held_notebag[note] = val;
-  outlet(0, Number(note), Number(val));
+  outlet(0, "midinote", Number(note), Number(val));
 }
 function _stop_note(note) {
   delete _held_notebag[note];
-  outlet(0, Number(note), 0);
+  outlet(0, "midinote", Number(note), 0);
 }
