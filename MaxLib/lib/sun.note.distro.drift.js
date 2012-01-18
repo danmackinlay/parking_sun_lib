@@ -3,9 +3,14 @@ Maintain a list of agents who drunkenly walk to preserve distribution of
 impulses according to prescribed density and incoming held note velocity,
 in the mean.
 
-TODO: reseedable RNG
-Document params.
+TODO:
 
+* reseedable RNG
+* Document params.
+* variable note velocity
+* changing intensity value should not retrigger notes
+* when there are no notes in, fade to zero
+* support a flush command
 */
 
 //////// Max Initialisation
@@ -69,6 +74,7 @@ function bang() {
   //calculate probs.
   //If reponse = 1, always go the correct way.
   //If response = 0, wander uniformly.
+  // in between, interpolate these behaviours
   var prob_right = (1 + _response)/3;
   var prob_wrong = (1 - prob_right)/2;
   var probs = [prob_right, prob_wrong, prob_wrong];
@@ -108,7 +114,13 @@ function bang() {
     } else {
       curr_dest = priority_dests[2];
     }
-    dests[note] = curr_dest * _range;
+    if (curr_dest>0) {
+      dests[note] = curr_dest * _range;
+    } else {
+      delete dests[note];
+    }
+    //table-compatible density outlet
+    outlet(0, "dist", Number(note), Math.floor(128*Number(curr_dest * _range)));
   }
   _update_outs(dests);
 };
