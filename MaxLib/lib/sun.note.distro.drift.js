@@ -67,8 +67,6 @@ function list(pitch, vel) {
 };
 //iterate the drunken walk for each note
 function bang() {
-  post("bango", 1);
-  post();
   // basic heartbeat function keeps the dist updating going on.
   var sources = {}; //where we are
   var targets = {}; //where we aim
@@ -123,7 +121,6 @@ function bang() {
     }
     //table-compatible density outlet
     outlet(0, "dist", Number(note), Math.floor(128*Number(curr_dest * _range)));
-    post('posted', "dist", Number(note), Math.floor(128*Number(curr_dest * _range)), "\n");
   }
   _update_outs(dests);
 };
