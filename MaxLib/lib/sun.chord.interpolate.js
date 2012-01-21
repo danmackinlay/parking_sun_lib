@@ -8,8 +8,12 @@ TODO:
 * reseedable RNG
 * Document params.
 * variable note velocity (exp distributed? power law?) 
+
+  * some kind of joint distribution?
+  
 * when there are no notes in, fade to zero
 * support a flush command
+* work out why intensities osciallate around peak despite tolerance param
 */
 
 //////// Max Initialisation
@@ -20,13 +24,11 @@ var lib;
 
 //////// Declare global JS vars
 var _rng;
-
+var _tolerance = 1/128;
 //what to converge to
 var _ideal_notebag = {};
 // what notes are converging
 var _held_notebag = {};
-// howconvergent the walk is
-var _rate = 0.5;
 // how minute the probability distribution levels are.
 var _range = 0.1;
 
@@ -71,10 +73,6 @@ function bang() {
   var sources = {}; //where we are
   var targets = {}; //where we aim
   var dests = {};   //where we go
-  //calculate probs.
-  //If reponse = 1, always go the correct way.
-  //If response = 0, wander uniformly.
-  // in between, interpolate these behaviours
   //merge all notesets
   for (var note in _ideal_notebag) {
     sources[note] = 0;
@@ -90,18 +88,18 @@ function bang() {
   //we should now have the same keys in sources and targets. So.
   for (var note in sources) {
     var priority_dests;
-    var curr_source = Math.round(sources[note]/_range);
-    var curr_target = Math.round(targets[note]/_range);
-    var curr_dest;
-    var ceiling = 1/_range;
+    var curr_source = sources[note];
+    var curr_target = targets[note];
+    var curr_dest = curr_target;
     var r;
-    if (curr_target>curr_source) {
-      curr_dest = Math.min(curr_source + 1, ceiling);
-    } else if (curr_target<curr_source) {
-      curr_dest = Math.max(curr_source - 1, 0);
+    if ((curr_target - _tolerance) > curr_source) {
+      curr_dest = Math.min(curr_source + _range, 1);
+    } else if ((curr_target + _tolerance) < curr_source) {
+      curr_dest = Math.max(curr_source - _range, 0);
     };
+    dests[note] = curr_dest;
     //table-compatible density outlet
-    outlet(0, "dist", Number(note), Math.floor(128*Number(curr_dest * _range)));
+    outlet(0, "dist", Number(note), Math.floor(128*curr_dest));
   }
   _update_outs(dests);
 };
