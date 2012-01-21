@@ -11,7 +11,6 @@ var _polys_notes = {};
 var _max_voices = 16;
 
 function midinote(pitch, vel) {
-  post("midinote", pitch, vel,arrayfromargs(arguments), "\n"); 
   return _voice(arrayfromargs(arguments));
 };
 function list(pitch, vel) {
