@@ -7,8 +7,7 @@ TODO:
 
 * reseedable RNG
 * Document params.
-* variable note velocity
-* changing intensity value should not retrigger notes
+* variable note velocity (exp distributed? power law?) 
 * when there are no notes in, fade to zero
 * support a flush command
 */
@@ -30,6 +29,7 @@ var _held_notebag = {};
 var _response = 0.5;
 // how minute the probability distribution levels are.
 var _range = 0.1;
+
 var delayed_start = new Task(function () {outlet(0, "alive", "bang")}, this);
 delayed_start.interval = 50;
 delayed_start.execute();
@@ -47,8 +47,6 @@ function loadbang() {
   //////// assign initial values to JS vars
 };
 /////// handling messages
-// number lists are presumed to be MIDI notes
-
 //PRNG seeding
 function seed(seed) {
   _rng = new lib.PseudoRandom(seed);
@@ -59,6 +57,7 @@ function response(val) {
 function range(val) {
   _range = val;
 };
+// number lists are presumed to be MIDI notes
 function list(pitch, vel) {
   if (vel) {
     _ideal_notebag[String(pitch)] = vel/127;
@@ -68,6 +67,9 @@ function list(pitch, vel) {
 };
 //iterate the drunken walk for each note
 function bang() {
+  post("bango", 1);
+  post();
+  // basic heartbeat function keeps the dist updating going on.
   var sources = {}; //where we are
   var targets = {}; //where we aim
   var dests = {};   //where we go
@@ -121,6 +123,7 @@ function bang() {
     }
     //table-compatible density outlet
     outlet(0, "dist", Number(note), Math.floor(128*Number(curr_dest * _range)));
+    post('posted', "dist", Number(note), Math.floor(128*Number(curr_dest * _range)), "\n");
   }
   _update_outs(dests);
 };
