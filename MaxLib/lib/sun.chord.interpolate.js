@@ -13,6 +13,8 @@ TODO:
   
 * when there are no notes in, fade to zero
 * support a flush command
+* exponential and linear decays
+* change output to aftertouch (in Max terms, poly key pressure)
 * work out why intensities osciallate around peak despite tolerance param
 */
 
@@ -119,7 +121,7 @@ function _update_outs(dests) {
   };
   for (var note in _held_notebag) {
     if (!dests[note]) {
-      notes_to_stop.push(note);
+       notes_to_stop.push(note);
     };
   };
   notes_to_stop.forEach(_stop_note);
