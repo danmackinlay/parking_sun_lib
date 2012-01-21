@@ -26,7 +26,7 @@ var _ideal_notebag = {};
 // what notes are converging
 var _held_notebag = {};
 // howconvergent the walk is
-var _response = 0.5;
+var _rate = 0.5;
 // how minute the probability distribution levels are.
 var _range = 0.1;
 
@@ -75,9 +75,6 @@ function bang() {
   //If reponse = 1, always go the correct way.
   //If response = 0, wander uniformly.
   // in between, interpolate these behaviours
-  var prob_right = (1 + _response)/3;
-  var prob_wrong = (1 - prob_right)/2;
-  var probs = [prob_right, prob_wrong, prob_wrong];
   //merge all notesets
   for (var note in _ideal_notebag) {
     sources[note] = 0;
@@ -96,29 +93,13 @@ function bang() {
     var curr_source = Math.round(sources[note]/_range);
     var curr_target = Math.round(targets[note]/_range);
     var curr_dest;
-    var lower = Math.max(curr_source-1, 0);
-    var higher = Math.min(curr_source+1, 1/_range); //rounding probs?
+    var ceiling = 1/_range;
     var r;
-    if (curr_source>curr_dest) {
-      priority_dests = [lower, curr_source, higher];
-    } else if (curr_dest>curr_source) {
-      priority_dests = [higher, curr_source, lower];
-    } else {
-      priority_dests = [curr_source, higher, lower];
-    }
-    r = _rng.random();
-    if (r<prob_right) {
-      curr_dest = priority_dests[0];
-    } else if (r>prob_right+prob_wrong) {
-      curr_dest = priority_dests[1];
-    } else {
-      curr_dest = priority_dests[2];
-    }
-    if (curr_dest>0) {
-      dests[note] = curr_dest * _range;
-    } else {
-      delete dests[note];
-    }
+    if (curr_target>curr_source) {
+      curr_dest = Math.min(curr_source + 1, ceiling);
+    } else if (curr_target<curr_source) {
+      curr_dest = Math.max(curr_source - 1, 0);
+    };
     //table-compatible density outlet
     outlet(0, "dist", Number(note), Math.floor(128*Number(curr_dest * _range)));
   }
