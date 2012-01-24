@@ -1,7 +1,5 @@
 /* 
-Maintain a list of agents who drunkenly walk to preserve distribution of
-impulses according to prescribed density and incoming held note velocity,
-in the mean.
+gradually interpolate between chords in the MIDI domain
 
 TODO:
 
@@ -12,10 +10,11 @@ TODO:
   * some kind of joint distribution?
   
 * when there are no notes in, fade to zero
+* separate into two separate midi tools
 * support a flush command
 * exponential and linear decays
-* change output to aftertouch (in Max terms, poly key pressure)
-* work out why intensities osciallate around peak despite tolerance param
+* work out why intensities oscillate around peak despite tolerance param
+* preserve channel and poly pressure and bend messages for a given note
 */
 
 //////// Max Initialisation
@@ -33,6 +32,8 @@ var _ideal_notebag = {};
 var _held_notebag = {};
 // how minute the probability distribution levels are.
 var _range = 0.1;
+//we can optionally mark polyphony pressure results separately
+var tweak_prefix = "midinote";
 
 var delayed_start = new Task(function () {outlet(0, "alive", "bang")}, this);
 delayed_start.interval = 50;
@@ -48,7 +49,11 @@ function loadbang() {
   sun_include(lib, "sun.library.js");
   _rng = new lib.PseudoRandom();
   
-  //////// assign initial values to JS vars
+  if (jsarguments.length>1) {
+    if (jsarguments[1]==="pressure") {
+      tweak_prefix = "midipressure";
+    }
+  }
 };
 /////// handling messages
 //PRNG seeding
@@ -110,11 +115,12 @@ function bang() {
 
 function _update_outs(dests) {
   var notes_to_stop = [];
+  var notes_to_start = {};
   var notes_to_tweak = {};
   
   for (var note in dests) {
     if (!_held_notebag.hasOwnProperty(note)) {
-      notes_to_tweak[note] = dests[note];
+      notes_to_start[note] = dests[note];
     } else if (_held_notebag[note]!==dests[note]) {
       notes_to_tweak[note] = dests[note];
     };
@@ -125,15 +131,21 @@ function _update_outs(dests) {
     };
   };
   notes_to_stop.forEach(_stop_note);
+  for (note in notes_to_start) {
+    _start_note(note, notes_to_start[note]);
+  }
   for (note in notes_to_tweak) {
     _tweak_note(note, notes_to_tweak[note]);
   }
   // that is all
 };
-
-function _tweak_note(note, val) {
+function _start_note(note, val) {
   _held_notebag[note] = val;
   outlet(0, "midinote", Number(note), Number(val));
+}
+function _tweak_note(note, val) {
+  _held_notebag[note] = val;
+  outlet(0, tweak_prefix, Number(note), Number(val));
 }
 function _stop_note(note) {
   delete _held_notebag[note];
