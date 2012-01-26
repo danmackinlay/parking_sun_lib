@@ -3,19 +3,14 @@ gradually interpolate between chords in the MIDI domain
 
 TODO:
 
-* reseedable RNG
 * Document params.
 * variable note velocity (exp distributed? power law?) 
 
   * some kind of joint distribution?
-  
-* when there are no notes in, fade to zero
+
 * support a flush command
 * exponential and linear decays
 * work out why intensities oscillate around peak despite tolerance param
-* preserve channel and poly pressure and bend messages for a given note
-* allow random quantised oscillations
-* allow random subset selection
 */
 
 //////// Max Initialisation
