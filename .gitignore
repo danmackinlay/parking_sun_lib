@@ -18,11 +18,10 @@
 !/Presets/MIDI\ Effects/Max\ MIDI\ Effect/
 !/Presets/Audio\ Effects/Max\ Audio\ Effect/
 !/Presets/Instruments/Max\ Instrument/
-/Presets/MIDI\ Effects/Max\ MIDI\ Effect/Monolake\ Devices/*
-/Presets/MIDI\ Effects/Max\ MIDI\ Effect/Step\ Sequencer/*
-/Presets/MIDI\ Effects/Max\ MIDI\ Effect/Tools/*
-/Presets/Instruments/Max\ Instrument/Loop\ Shifter/*
-/Presets/Instruments/Max\ Instrument/Pluggo/*
-/Presets/Audio Effects/Max Audio Effect/Buffer Shuffler/*
-/Presets/Audio Effects/Max Audio Effect/Pluggo/*
-/Presets/Audio Effects/Max Audio Effect/Tools/*
+/Presets/MIDI\ Effects/Max\ MIDI\ Effect/*
+/Presets/Instruments/Max\ Instrument/*
+/Presets/Audio Effects/Max Audio Effect/*
+!/Presets/MIDI\ Effects/Max\ MIDI\ Effect/Parking\ Sun/
+!/Presets/Instruments/Max\ Instrument/Parking\ Sun/
+!/Presets/Audio Effects/Max Audio Effect/Parking\ Sun/
+MaxLib/lib/3rdparty/CNMAT-Everything-OSX-MachO/
