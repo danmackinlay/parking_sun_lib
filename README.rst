@@ -1,5 +1,5 @@
 Content in this repository is copyrighted 2010-2012 Dan MacKinlay except where otherwise stated.
-In particular, code in Maxlib/lib/3rdparty is copyright its respective authors.
+In particular, code in folders named "3rdparty" is copyright its respective authors, and distributed under their respective licences.
 
 This collection of scripts is is distributed under the terms of the GNU General Public License v3.0.
 If you wish to negotiate alternative licences, you may contact me.
