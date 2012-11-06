@@ -7,7 +7,7 @@
 			"revision" : 7
 		}
 ,
-		"rect" : [ -1680.0, 22.0, 1143.0, 982.0 ],
+		"rect" : [ 0.0, 44.0, 1143.0, 982.0 ],
 		"bglocked" : 0,
 		"openinpresentation" : 0,
 		"default_fontsize" : 12.0,
@@ -55,7 +55,6 @@
 					"numinlets" : 1,
 					"numoutlets" : 0,
 					"patching_rect" : [ 742.5, 106.5, 50.0, 39.0 ],
-					"presentation_rect" : [ 337.0, 78.5, 0.0, 0.0 ],
 					"text" : "buffer"
 				}
 
@@ -109,8 +108,7 @@
 					"maxclass" : "outlet",
 					"numinlets" : 1,
 					"numoutlets" : 0,
-					"patching_rect" : [ 504.199951, 422.0, 25.0, 25.0 ],
-					"presentation_rect" : [ 220.0, 505.0, 0.0, 0.0 ]
+					"patching_rect" : [ 504.199951, 422.0, 25.0, 25.0 ]
 				}
 
 			}
