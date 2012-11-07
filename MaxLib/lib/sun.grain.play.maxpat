@@ -68,7 +68,7 @@
 					"numinlets" : 6,
 					"numoutlets" : 2,
 					"outlettype" : [ "signal", "signal" ],
-					"patching_rect" : [ 466.599976, 326.0, 128.0, 20.0 ],
+					"patching_rect" : [ 436.599976, 326.0, 128.0, 20.0 ],
 					"text" : "sun.grainplay.grain #1"
 				}
 
@@ -108,7 +108,7 @@
 					"maxclass" : "outlet",
 					"numinlets" : 1,
 					"numoutlets" : 0,
-					"patching_rect" : [ 504.199951, 422.0, 25.0, 25.0 ]
+					"patching_rect" : [ 474.199951, 422.0, 25.0, 25.0 ]
 				}
 
 			}
@@ -297,7 +297,7 @@
 					"numinlets" : 6,
 					"numoutlets" : 2,
 					"outlettype" : [ "signal", "signal" ],
-					"patching_rect" : [ 595.199951, 326.0, 128.0, 20.0 ],
+					"patching_rect" : [ 646.199951, 326.0, 128.0, 20.0 ],
 					"text" : "sun.grainplay.grain #1"
 				}
 
@@ -323,7 +323,7 @@
 					"maxclass" : "outlet",
 					"numinlets" : 1,
 					"numoutlets" : 0,
-					"patching_rect" : [ 648.199951, 422.0, 25.0, 25.0 ]
+					"patching_rect" : [ 699.199951, 422.0, 25.0, 25.0 ]
 				}
 
 			}
