@@ -14,7 +14,9 @@ class LiveRawAPI(object):
             there_host="localhost",
             there_port=7400,
             here_host="localhost",
-            here_port=7401):
+            here_port=7401,
+            *args, **kwargs):
+        super(LiveRawAPI, self).__init__(*args, **kwargs)
         self.oscserver = OSCServer((here_host, here_port))
         self.oscclient = OSCClient()
         self.oscclient.connect((there_host, there_port))
@@ -25,18 +27,18 @@ class LiveRawAPI(object):
         Note that state is fragile here, so you'd better be sure that there 
         will be a response, or it will hang waiting."""
 
-        self.oscclient.send(OSCMessage('/query', ['path', 'getpath']))
+        self.oscclient.send(OSCMessage('/query', args))
         return self.handle_request()
     
     def raw_call(self, *args):
         """Posts a call, returns nothing.
         Note that state is fragile here, so you'd better be sure that there 
-        will be no response, or it will get confusing."""
+        will be no response, or you won't know what returned what."""
         self.oscclient.send(OSCMessage('/query', ['path', 'getpath']))
     
     def _handle_response(self, path, tags, args, source):
         """private callback to handle OSC responses. Sets state."""
-        #print "callback", path, args, source
+        print "callback", path, args, source
         self._incoming = args
         self._handled = False
     
@@ -47,22 +49,18 @@ class LiveRawAPI(object):
         while self._handled:
             self.oscserver.handle_request()
         self._handled = False
-        return self._incoming
+        _incoming = self._incoming
+        self._incoming = None
+        return _incoming
         
     def close(self):
         self.oscserver.close()
 
-class LiveAPI(LiveRawAPI):
-    path = None
-    
-    def __init__(self, *args, **kwargs):
-        super(LiveAPI, self).__init__(*args, **kwargs)
-        self.path = []
-    
+    ### more structured access involves navigating places with the path object
     def goto(self, *args):
         resp = self.raw_query('path', 'goto', *args)
         prefix, path = resp[1], resp[2:]
-        #sanity check that we are getting th right message
+        #sanity check that we are getting the right message
         assert prefix=='path'
         self.path = path
     
@@ -76,10 +74,20 @@ class LiveAPI(LiveRawAPI):
     def getcount(self):
         resp = self.raw_query('path', 'getcount')
         return resp[1:]
-    
-    def 
 
-api = LiveAPI()
+class LivePresetManager(object):
+    """a bunch of settings for the api device and its antecedents"""
+    path = None
+    api = None
+    
+    def __init__(self, api, *args, **kwargs):
+        super(LivePresetManager, self).__init__(*args, **kwargs)
+        self.api = api
+        self.path = []
+    
+
+api = LiveRawAPI()
+preset_mgr = LivePresetManager(api)
 
 # api.query('path', 'getpath')
 # api.oscserver.handle_request()
