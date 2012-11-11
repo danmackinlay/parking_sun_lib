@@ -10,12 +10,14 @@ class LiveRawAPI(object):
     _incoming = None
     _handled = True
     _received = False
+    debug = False
     
     def __init__(self,
             there_host="localhost",
             there_port=7400,
             here_host="localhost",
             here_port=7401,
+            debug=False,
             *args, **kwargs):
         super(LiveRawAPI, self).__init__(*args, **kwargs)
         self.oscserver = OSCServer((here_host, here_port))
@@ -40,7 +42,7 @@ class LiveRawAPI(object):
     
     def _handle_response(self, path, tags, args, source):
         """private callback to handle OSC responses. Sets state."""
-        print "callback", path, args, source
+        if self.debug: print "callback", path, args, source
         self._incoming.append(args)
         self._received = True
     
@@ -50,15 +52,17 @@ class LiveRawAPI(object):
         2 Return it and reset.
         This is completely fucked at the momenl I can't make timeouts work in any usable fashion."""
         
-        self.oscserver.handle_request()
-        while self._received:
-            self._received = False
+        try:
             self.oscserver.handle_request()
+            while self._received:
+                self._received = False
+                self.oscserver.handle_request()
             
-        _incoming = self._incoming
-        self._incoming = []
-        self._received = False
-        return _incoming
+            _incoming = self._incoming
+            return _incoming
+        finally:
+            self._incoming = []
+            self._received = False            
         
     def close(self):
         self.oscserver.close()
@@ -99,3 +103,32 @@ preset_mgr = LivePresetManager(api)
 
 # api.query('path', 'getpath')
 # api.oscserver.handle_request()
+
+EXAMPLE = """
+# This gets all parameters from another device in the same track as this.
+>>> %run ableton_api.py
+
+>>> api.raw_query('path', 'goto', 'this_device', 'canonical_parent')
+... [['path', 'id', 2]]
+
+>>> api.raw_query('obj', 'get', 'devices')
+... [['obj', 'devices', 'id', 1, 'id', 13, 'id', 14]]
+
+>>> api.raw_call('obj', 'id', '13')
+
+>>> api.raw_query('obj', 'get', 'parameters')
+...
+[['obj',
+  'parameters',
+  'id',
+  15,
+  'id',
+  16,
+  'id',
+  17,
+  'id',
+  18,
+  'id',
+  19,
+...
+"""
