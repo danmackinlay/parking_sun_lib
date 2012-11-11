@@ -9,6 +9,7 @@ class LiveRawAPI(object):
     """
     _incoming = None
     _handled = True
+    _received = False
     
     def __init__(self,
             there_host="localhost",
@@ -21,6 +22,7 @@ class LiveRawAPI(object):
         self.oscclient = OSCClient()
         self.oscclient.connect((there_host, there_port))
         self.oscserver.addMsgHandler('/response', self._handle_response)
+        self._incoming = []
 
     def raw_query(self, *args):
         """Posts a query, waits for a response. Returns it.
@@ -39,18 +41,23 @@ class LiveRawAPI(object):
     def _handle_response(self, path, tags, args, source):
         """private callback to handle OSC responses. Sets state."""
         print "callback", path, args, source
-        self._incoming = args
-        self._handled = False
+        self._incoming.append(args)
+        self._received = True
     
     def handle_request(self):
         """hack to handle asynchronous calls:
-        1 Loop until something has been returned and tacked onto the class.
-        2 Return it and reset."""
-        while self._handled:
+        1 try to get something returned and tacked onto the class.
+        2 Return it and reset.
+        This is completely fucked at the momenl I can't make timeouts work in any usable fashion."""
+        
+        self.oscserver.handle_request()
+        while self._received:
+            self._received = False
             self.oscserver.handle_request()
-        self._handled = False
+            
         _incoming = self._incoming
-        self._incoming = None
+        self._incoming = []
+        self._received = False
         return _incoming
         
     def close(self):
@@ -84,6 +91,7 @@ class LivePresetManager(object):
         super(LivePresetManager, self).__init__(*args, **kwargs)
         self.api = api
         self.path = []
+    
     
 
 api = LiveRawAPI()
