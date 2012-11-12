@@ -135,7 +135,7 @@
 					"numoutlets" : 2,
 					"outlettype" : [ "float", "bang" ],
 					"parameter_enable" : 0,
-					"patching_rect" : [ 31.5, 215.5, 50.0, 20.0 ]
+					"patching_rect" : [ 67.5, 210.5, 50.0, 20.0 ]
 				}
 
 			}
