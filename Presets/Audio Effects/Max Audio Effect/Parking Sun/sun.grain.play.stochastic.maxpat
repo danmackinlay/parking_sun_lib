@@ -30,12 +30,13 @@
 				"box" : 				{
 					"fontname" : "Arial",
 					"fontsize" : 12.0,
-					"id" : "obj-24",
+					"id" : "obj-15",
 					"maxclass" : "newobj",
 					"numinlets" : 1,
-					"numoutlets" : 0,
-					"patching_rect" : [ 899.5, 314.0, 55.0, 20.0 ],
-					"text" : "print ar1"
+					"numoutlets" : 1,
+					"outlettype" : [ "" ],
+					"patching_rect" : [ 461.25, 191.0, 85.0, 20.0 ],
+					"text" : "prepend open"
 				}
 
 			}
@@ -43,13 +44,13 @@
 				"box" : 				{
 					"fontname" : "Arial",
 					"fontsize" : 12.0,
-					"id" : "obj-20",
-					"maxclass" : "newobj",
-					"numinlets" : 1,
-					"numoutlets" : 2,
-					"outlettype" : [ "", "int" ],
-					"patching_rect" : [ 836.5, 277.5, 69.0, 20.0 ],
-					"text" : "unpack s 2"
+					"id" : "obj-14",
+					"maxclass" : "message",
+					"numinlets" : 2,
+					"numoutlets" : 1,
+					"outlettype" : [ "" ],
+					"patching_rect" : [ 521.25, 220.0, 91.0, 18.0 ],
+					"text" : "max_voices $1"
 				}
 
 			}
@@ -57,13 +58,41 @@
 				"box" : 				{
 					"fontname" : "Arial",
 					"fontsize" : 12.0,
-					"id" : "obj-19",
+					"id" : "obj-12",
 					"maxclass" : "newobj",
 					"numinlets" : 1,
-					"numoutlets" : 2,
-					"outlettype" : [ "", "" ],
-					"patching_rect" : [ 853.0, 238.0, 74.0, 20.0 ],
-					"text" : "patcherargs"
+					"numoutlets" : 3,
+					"outlettype" : [ "int", "bang", "int" ],
+					"patching_rect" : [ 521.25, 164.0, 46.0, 20.0 ],
+					"text" : "t i b i"
+				}
+
+			}
+, 			{
+				"box" : 				{
+					"fontname" : "Arial",
+					"fontsize" : 12.0,
+					"id" : "obj-11",
+					"maxclass" : "message",
+					"numinlets" : 2,
+					"numoutlets" : 1,
+					"outlettype" : [ "" ],
+					"patching_rect" : [ 548.25, 254.0, 61.0, 18.0 ],
+					"text" : "voices $1"
+				}
+
+			}
+, 			{
+				"box" : 				{
+					"fontname" : "Arial",
+					"fontsize" : 12.0,
+					"id" : "obj-4",
+					"maxclass" : "newobj",
+					"numinlets" : 3,
+					"numoutlets" : 3,
+					"outlettype" : [ "", "", "" ],
+					"patching_rect" : [ 521.25, 131.0, 105.0, 20.0 ],
+					"text" : "route voices open"
 				}
 
 			}
@@ -78,7 +107,7 @@
 					"numinlets" : 1,
 					"numoutlets" : 0,
 					"patching_rect" : [ 777.0, 49.0, 150.0, 74.0 ],
-					"text" : "Thin wrapper around sun,grainplay.poly to sort out routing and get the max voices argument passed in correctly"
+					"text" : "Thin wrapper around sun,grain.play.poly to sort out routing and get the max voices argument passed in correctly"
 				}
 
 			}
@@ -89,10 +118,10 @@
 					"id" : "obj-1",
 					"maxclass" : "newobj",
 					"numinlets" : 1,
-					"numoutlets" : 1,
-					"outlettype" : [ "bang" ],
-					"patching_rect" : [ 709.0, 164.0, 60.0, 20.0 ],
-					"text" : "loadbang"
+					"numoutlets" : 3,
+					"outlettype" : [ "bang", "int", "int" ],
+					"patching_rect" : [ 620.0, 164.0, 85.0, 20.0 ],
+					"text" : "live.thisdevice"
 				}
 
 			}
@@ -105,8 +134,8 @@
 					"numinlets" : 1,
 					"numoutlets" : 2,
 					"outlettype" : [ "signal", "signal" ],
-					"patching_rect" : [ 486.0, 304.0, 219.0, 20.0 ],
-					"text" : "poly~ sun.grain.play.poly #2 args #1 #2"
+					"patching_rect" : [ 486.0, 304.0, 275.0, 20.0 ],
+					"text" : "poly~ sun.grain.play.stochastic.poly #2 args #1 #2"
 				}
 
 			}
@@ -119,7 +148,7 @@
 					"numinlets" : 2,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 709.0, 226.0, 51.0, 18.0 ],
+					"patching_rect" : [ 620.0, 226.0, 51.0, 18.0 ],
 					"text" : "target 0"
 				}
 
@@ -159,7 +188,7 @@
 					"numinlets" : 0,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 577.25, 118.0, 25.0, 25.0 ]
+					"patching_rect" : [ 521.25, 89.0, 25.0, 25.0 ]
 				}
 
 			}
@@ -200,19 +229,55 @@
 			}
 , 			{
 				"patchline" : 				{
-					"destination" : [ "obj-20", 0 ],
+					"destination" : [ "obj-7", 0 ],
 					"disabled" : 0,
 					"hidden" : 0,
-					"source" : [ "obj-19", 0 ]
+					"source" : [ "obj-11", 0 ]
 				}
 
 			}
 , 			{
 				"patchline" : 				{
-					"destination" : [ "obj-24", 0 ],
+					"destination" : [ "obj-11", 0 ],
 					"disabled" : 0,
 					"hidden" : 0,
-					"source" : [ "obj-19", 0 ]
+					"source" : [ "obj-12", 2 ]
+				}
+
+			}
+, 			{
+				"patchline" : 				{
+					"destination" : [ "obj-14", 0 ],
+					"disabled" : 0,
+					"hidden" : 0,
+					"source" : [ "obj-12", 0 ]
+				}
+
+			}
+, 			{
+				"patchline" : 				{
+					"destination" : [ "obj-6", 0 ],
+					"disabled" : 0,
+					"hidden" : 0,
+					"source" : [ "obj-12", 1 ]
+				}
+
+			}
+, 			{
+				"patchline" : 				{
+					"destination" : [ "obj-7", 0 ],
+					"disabled" : 0,
+					"hidden" : 0,
+					"source" : [ "obj-14", 0 ]
+				}
+
+			}
+, 			{
+				"patchline" : 				{
+					"destination" : [ "obj-7", 0 ],
+					"disabled" : 0,
+					"hidden" : 0,
+					"source" : [ "obj-15", 0 ]
 				}
 
 			}
@@ -245,7 +310,34 @@
 			}
 , 			{
 				"patchline" : 				{
+					"destination" : [ "obj-12", 0 ],
+					"disabled" : 0,
+					"hidden" : 0,
+					"source" : [ "obj-4", 0 ]
+				}
+
+			}
+, 			{
+				"patchline" : 				{
+					"destination" : [ "obj-15", 0 ],
+					"disabled" : 0,
+					"hidden" : 0,
+					"source" : [ "obj-4", 1 ]
+				}
+
+			}
+, 			{
+				"patchline" : 				{
 					"destination" : [ "obj-2", 0 ],
+					"disabled" : 0,
+					"hidden" : 0,
+					"source" : [ "obj-4", 2 ]
+				}
+
+			}
+, 			{
+				"patchline" : 				{
+					"destination" : [ "obj-4", 0 ],
 					"disabled" : 0,
 					"hidden" : 0,
 					"source" : [ "obj-52", 0 ]
@@ -281,8 +373,8 @@
 			}
  ],
 		"dependency_cache" : [ 			{
-				"name" : "sun.grain.play.poly.maxpat",
-				"bootpath" : "/Users/dan/AbletonLibrary/MaxLib/lib",
+				"name" : "sun.grain.play.stochastic.poly.maxpat",
+				"bootpath" : "/Users/dan/AbletonLibrary/Presets/Audio Effects/Max Audio Effect/Parking Sun",
 				"patcherrelativepath" : "",
 				"type" : "JSON",
 				"implicit" : 1
@@ -290,14 +382,14 @@
 , 			{
 				"name" : "sun.2pan~.maxpat",
 				"bootpath" : "/Users/dan/AbletonLibrary/MaxLib/lib",
-				"patcherrelativepath" : "",
+				"patcherrelativepath" : "../../../../MaxLib/lib",
 				"type" : "JSON",
 				"implicit" : 1
 			}
 , 			{
 				"name" : "sun.powercurve~.maxpat",
 				"bootpath" : "/Users/dan/AbletonLibrary/MaxLib/lib",
-				"patcherrelativepath" : "",
+				"patcherrelativepath" : "../../../../MaxLib/lib",
 				"type" : "JSON",
 				"implicit" : 1
 			}
