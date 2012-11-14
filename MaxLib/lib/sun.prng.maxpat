@@ -4,7 +4,7 @@
 		"appversion" : 		{
 			"major" : 6,
 			"minor" : 0,
-			"revision" : 7
+			"revision" : 8
 		}
 ,
 		"rect" : [ 0.0, 44.0, 1084.0, 960.0 ],
@@ -101,7 +101,7 @@
 					"numoutlets" : 1,
 					"outlettype" : [ "float" ],
 					"patching_rect" : [ 138.0, 246.0, 129.0, 19.0 ],
-					"text" : "peek~ sun.prng.buf-#1"
+					"text" : "peek~ #1-sun.prng.buf"
 				}
 
 			}
@@ -127,7 +127,7 @@
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
 					"patching_rect" : [ 138.0, 173.0, 132.0, 19.0 ],
-					"text" : "value sun.prng.val-#1 0"
+					"text" : "value #1-sun.prng.val 0"
 				}
 
 			}
@@ -280,7 +280,7 @@
 					"numoutlets" : 2,
 					"outlettype" : [ "float", "bang" ],
 					"patching_rect" : [ 54.5, 32.0, 211.0, 19.0 ],
-					"text" : "buffer~ sun.prng.buf-#1 @samps 1024"
+					"text" : "buffer~ #1-sun.prng.buf @samps 1024"
 				}
 
 			}
@@ -308,7 +308,7 @@
 					"numoutlets" : 1,
 					"outlettype" : [ "float" ],
 					"patching_rect" : [ 654.0, 340.0, 129.0, 19.0 ],
-					"text" : "peek~ sun.prng.buf-#1"
+					"text" : "peek~ #1-sun.prng.buf"
 				}
 
 			}

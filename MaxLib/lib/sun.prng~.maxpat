@@ -64,7 +64,7 @@
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
 					"patching_rect" : [ 488.0, 135.5, 151.0, 19.0 ],
-					"text" : "value sun.prng.sig.val-#1 0"
+					"text" : "value #1-sun.prng.sig.val 0"
 				}
 
 			}
@@ -92,7 +92,7 @@
 					"numoutlets" : 1,
 					"outlettype" : [ "signal" ],
 					"patching_rect" : [ 377.0, 263.0, 144.0, 21.0 ],
-					"text" : "index~ sun.prng.buf-#1"
+					"text" : "index~ #1-sun.prng.buf"
 				}
 
 			}
@@ -285,7 +285,7 @@
 					"numoutlets" : 2,
 					"outlettype" : [ "float", "bang" ],
 					"patching_rect" : [ 275.5, 26.0, 211.0, 19.0 ],
-					"text" : "buffer~ sun.prng.buf-#1 @samps 1024"
+					"text" : "buffer~ #1-sun.prng.buf @samps 1024"
 				}
 
 			}
@@ -313,7 +313,7 @@
 					"numoutlets" : 1,
 					"outlettype" : [ "float" ],
 					"patching_rect" : [ 130.0, 340.0, 129.0, 19.0 ],
-					"text" : "peek~ sun.prng.buf-#1"
+					"text" : "peek~ #1-sun.prng.buf"
 				}
 
 			}
