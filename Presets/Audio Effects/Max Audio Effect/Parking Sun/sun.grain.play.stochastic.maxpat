@@ -7,7 +7,7 @@
 			"revision" : 8
 		}
 ,
-		"rect" : [ 0.0, 44.0, 1143.0, 982.0 ],
+		"rect" : [ 662.0, 157.0, 1143.0, 982.0 ],
 		"bglocked" : 0,
 		"openinpresentation" : 0,
 		"default_fontsize" : 12.0,
@@ -35,7 +35,7 @@
 					"numinlets" : 1,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 444.199951, 200.0, 85.0, 20.0 ],
+					"patching_rect" : [ 461.25, 191.0, 85.0, 20.0 ],
 					"text" : "prepend open"
 				}
 
@@ -49,7 +49,7 @@
 					"numinlets" : 2,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 564.25, 226.0, 91.0, 18.0 ],
+					"patching_rect" : [ 521.25, 220.0, 91.0, 18.0 ],
 					"text" : "max_voices $1"
 				}
 
@@ -63,7 +63,7 @@
 					"numinlets" : 1,
 					"numoutlets" : 3,
 					"outlettype" : [ "int", "bang", "int" ],
-					"patching_rect" : [ 564.25, 164.0, 46.0, 20.0 ],
+					"patching_rect" : [ 521.25, 164.0, 46.0, 20.0 ],
 					"text" : "t i b i"
 				}
 
@@ -77,7 +77,7 @@
 					"numinlets" : 2,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 591.25, 258.0, 61.0, 18.0 ],
+					"patching_rect" : [ 548.25, 254.0, 61.0, 18.0 ],
 					"text" : "voices $1"
 				}
 
@@ -92,7 +92,7 @@
 					"numoutlets" : 3,
 					"outlettype" : [ "", "", "" ],
 					"patching_rect" : [ 521.25, 131.0, 105.0, 20.0 ],
-					"text" : "route open voices"
+					"text" : "route voices open"
 				}
 
 			}
@@ -117,11 +117,11 @@
 					"fontsize" : 12.0,
 					"id" : "obj-1",
 					"maxclass" : "newobj",
-					"numinlets" : 1,
-					"numoutlets" : 3,
-					"outlettype" : [ "bang", "int", "int" ],
-					"patching_rect" : [ 650.0, 164.0, 85.0, 20.0 ],
-					"text" : "live.thisdevice"
+					"numinlets" : 0,
+					"numoutlets" : 1,
+					"outlettype" : [ "bang" ],
+					"patching_rect" : [ 620.0, 164.0, 83.0, 20.0 ],
+					"text" : "sun.loadbang"
 				}
 
 			}
@@ -135,7 +135,8 @@
 					"numoutlets" : 2,
 					"outlettype" : [ "signal", "signal" ],
 					"patching_rect" : [ 487.0, 305.0, 292.0, 20.0 ],
-					"text" : "poly~ sun.grain.play.stochastic.poly #2 args #1 #2 #3"
+					"text" : "poly~ sun.grain.play.stochastic.poly #2 args #1 #2 #3",
+					"varname" : "poly~"
 				}
 
 			}
@@ -148,7 +149,7 @@
 					"numinlets" : 2,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 667.0, 226.0, 51.0, 18.0 ],
+					"patching_rect" : [ 620.0, 226.0, 51.0, 18.0 ],
 					"text" : "target 0"
 				}
 
@@ -162,7 +163,7 @@
 					"numinlets" : 1,
 					"numoutlets" : 2,
 					"outlettype" : [ "", "bang" ],
-					"patching_rect" : [ 607.25, 164.0, 32.5, 20.0 ],
+					"patching_rect" : [ 577.25, 164.0, 32.5, 20.0 ],
 					"text" : "t l b"
 				}
 
@@ -313,7 +314,7 @@
 					"destination" : [ "obj-12", 0 ],
 					"disabled" : 0,
 					"hidden" : 0,
-					"source" : [ "obj-4", 1 ]
+					"source" : [ "obj-4", 0 ]
 				}
 
 			}
@@ -322,7 +323,7 @@
 					"destination" : [ "obj-15", 0 ],
 					"disabled" : 0,
 					"hidden" : 0,
-					"source" : [ "obj-4", 0 ]
+					"source" : [ "obj-4", 1 ]
 				}
 
 			}
@@ -394,6 +395,13 @@
 				"implicit" : 1
 			}
 , 			{
+				"name" : "thru.maxpat",
+				"bootpath" : "/Applications/Max6/patches/m4l-patches/Pluggo for Live resources/patches",
+				"patcherrelativepath" : "../../../../../../../Applications/Max6/patches/m4l-patches/Pluggo for Live resources/patches",
+				"type" : "JSON",
+				"implicit" : 1
+			}
+, 			{
 				"name" : "sun.prng.slave.maxpat",
 				"bootpath" : "/Users/dan/AbletonLibrary/MaxLib/lib",
 				"patcherrelativepath" : "../../../../MaxLib/lib",
@@ -401,9 +409,23 @@
 				"implicit" : 1
 			}
 , 			{
-				"name" : "thru.maxpat",
-				"bootpath" : "/Applications/Max6/patches/m4l-patches/Pluggo for Live resources/patches",
-				"patcherrelativepath" : "../../../../../../../Applications/Max6/patches/m4l-patches/Pluggo for Live resources/patches",
+				"name" : "sun.gaussianize.maxpat",
+				"bootpath" : "/Users/dan/AbletonLibrary/MaxLib/lib",
+				"patcherrelativepath" : "../../../../MaxLib/lib",
+				"type" : "JSON",
+				"implicit" : 1
+			}
+, 			{
+				"name" : "sun.interp.maxpat",
+				"bootpath" : "/Users/dan/AbletonLibrary/MaxLib/lib",
+				"patcherrelativepath" : "../../../../MaxLib/lib",
+				"type" : "JSON",
+				"implicit" : 1
+			}
+, 			{
+				"name" : "sun.loadbang.maxpat",
+				"bootpath" : "/Users/dan/AbletonLibrary/MaxLib/lib",
+				"patcherrelativepath" : "../../../../MaxLib/lib",
 				"type" : "JSON",
 				"implicit" : 1
 			}
