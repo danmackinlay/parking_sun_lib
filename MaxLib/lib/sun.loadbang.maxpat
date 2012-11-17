@@ -30,14 +30,28 @@
 				"box" : 				{
 					"fontname" : "Arial",
 					"fontsize" : 12.0,
+					"id" : "obj-4",
+					"maxclass" : "newobj",
+					"numinlets" : 0,
+					"numoutlets" : 1,
+					"outlettype" : [ "" ],
+					"patching_rect" : [ 335.0, 47.0, 90.0, 20.0 ],
+					"text" : "r sun.loadbang"
+				}
+
+			}
+, 			{
+				"box" : 				{
+					"fontname" : "Arial",
+					"fontsize" : 12.0,
 					"frgb" : 0.0,
 					"id" : "obj-5",
-					"linecount" : 6,
+					"linecount" : 7,
 					"maxclass" : "comment",
 					"numinlets" : 1,
 					"numoutlets" : 0,
-					"patching_rect" : [ 216.0, 125.0, 150.0, 87.0 ],
-					"text" : "live.thisdevice is supposed to act like loadbang, but in some point revision it appears not to. Why bother risking it? bangs all round."
+					"patching_rect" : [ 216.0, 125.0, 150.0, 100.0 ],
+					"text" : "live.thisdevice is supposed to act like loadbang, but in some point revision it appears not to. Why bother risking it? bangs all round, global rebangs if necessary."
 				}
 
 			}
@@ -96,6 +110,15 @@
 					"disabled" : 0,
 					"hidden" : 0,
 					"source" : [ "obj-2", 0 ]
+				}
+
+			}
+, 			{
+				"patchline" : 				{
+					"destination" : [ "obj-3", 0 ],
+					"disabled" : 0,
+					"hidden" : 0,
+					"source" : [ "obj-4", 0 ]
 				}
 
 			}
