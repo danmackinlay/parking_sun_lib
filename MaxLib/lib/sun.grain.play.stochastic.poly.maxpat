@@ -166,10 +166,10 @@
 									"id" : "obj-5",
 									"maxclass" : "newobj",
 									"numinlets" : 1,
-									"numoutlets" : 1,
-									"outlettype" : [ "float" ],
+									"numoutlets" : 2,
+									"outlettype" : [ "float", "" ],
 									"patching_rect" : [ 292.0, 100.0, 105.0, 20.0 ],
-									"text" : "sun.prng.slave #3"
+									"text" : "sun.prng.lcg #3"
 								}
 
 							}
@@ -320,10 +320,10 @@
 									"id" : "obj-3",
 									"maxclass" : "newobj",
 									"numinlets" : 1,
-									"numoutlets" : 1,
-									"outlettype" : [ "float" ],
+									"numoutlets" : 2,
+									"outlettype" : [ "float", "" ],
 									"patching_rect" : [ 187.0, 100.0, 105.0, 20.0 ],
-									"text" : "sun.prng.slave #3"
+									"text" : "sun.prng.lcg #3"
 								}
 
 							}
@@ -910,10 +910,10 @@
 									"id" : "obj-3",
 									"maxclass" : "newobj",
 									"numinlets" : 1,
-									"numoutlets" : 1,
-									"outlettype" : [ "float" ],
+									"numoutlets" : 2,
+									"outlettype" : [ "float", "" ],
 									"patching_rect" : [ 164.0, 100.0, 105.0, 20.0 ],
-									"text" : "sun.prng.slave #3"
+									"text" : "sun.prng.lcg #3"
 								}
 
 							}
@@ -1405,11 +1405,11 @@
 									"fontsize" : 12.0,
 									"frgb" : 0.0,
 									"id" : "obj-71",
-									"linecount" : 4,
+									"linecount" : 3,
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 306.0, 384.0, 79.0, 64.0 ],
+									"patching_rect" : [ 302.0, 390.5, 86.0, 51.0 ],
 									"text" : "remove 0s from pitch estimates"
 								}
 
@@ -1424,7 +1424,6 @@
 									"numoutlets" : 1,
 									"outlettype" : [ "signal" ],
 									"patching_rect" : [ 251.25, 375.0, 43.0, 20.0 ],
-									"presentation_rect" : [ 209.5, 347.0, 0.0, 0.0 ],
 									"text" : "sig~ 1"
 								}
 
@@ -1439,7 +1438,6 @@
 									"numoutlets" : 1,
 									"outlettype" : [ "signal" ],
 									"patching_rect" : [ 204.0, 429.0, 80.0, 20.0 ],
-									"presentation_rect" : [ 281.0, 433.0, 0.0, 0.0 ],
 									"text" : "selector~ 2 1"
 								}
 
@@ -1469,21 +1467,6 @@
 									"outlettype" : [ "signal" ],
 									"patching_rect" : [ 204.0, 375.0, 41.0, 20.0 ],
 									"text" : ">~ 80"
-								}
-
-							}
-, 							{
-								"box" : 								{
-									"fontname" : "Arial",
-									"fontsize" : 12.0,
-									"id" : "obj-65",
-									"maxclass" : "number~",
-									"mode" : 2,
-									"numinlets" : 2,
-									"numoutlets" : 2,
-									"outlettype" : [ "signal", "float" ],
-									"patching_rect" : [ 225.25, 518.0, 102.0, 20.0 ],
-									"sig" : 0.0
 								}
 
 							}
@@ -1553,7 +1536,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 418.75, 340.0, 211.25, 78.0 ],
+									"patching_rect" : [ 418.75, 340.0, 214.0, 78.0 ],
 									"text" : "This bit assumes that spectral energy is uniform so a filter of bandwidth Q lowers it by 1/Q.  Obvious problematic assumptions in here. Watch your speakers."
 								}
 
@@ -1786,10 +1769,10 @@
 									"id" : "obj-44",
 									"maxclass" : "newobj",
 									"numinlets" : 1,
-									"numoutlets" : 1,
-									"outlettype" : [ "float" ],
+									"numoutlets" : 2,
+									"outlettype" : [ "float", "" ],
 									"patching_rect" : [ 781.5, 92.0, 105.0, 20.0 ],
-									"text" : "sun.prng.slave #3"
+									"text" : "sun.prng.lcg #3"
 								}
 
 							}
@@ -1948,10 +1931,10 @@
 									"id" : "obj-31",
 									"maxclass" : "newobj",
 									"numinlets" : 1,
-									"numoutlets" : 1,
-									"outlettype" : [ "float" ],
+									"numoutlets" : 2,
+									"outlettype" : [ "float", "" ],
 									"patching_rect" : [ 586.5, 92.0, 105.0, 20.0 ],
-									"text" : "sun.prng.slave #3"
+									"text" : "sun.prng.lcg #3"
 								}
 
 							}
@@ -2032,10 +2015,10 @@
 									"id" : "obj-13",
 									"maxclass" : "newobj",
 									"numinlets" : 1,
-									"numoutlets" : 1,
-									"outlettype" : [ "float" ],
+									"numoutlets" : 2,
+									"outlettype" : [ "float", "" ],
 									"patching_rect" : [ 18.5, 91.0, 105.0, 20.0 ],
-									"text" : "sun.prng.slave #3"
+									"text" : "sun.prng.lcg #3"
 								}
 
 							}
@@ -2200,10 +2183,10 @@
 									"id" : "obj-3",
 									"maxclass" : "newobj",
 									"numinlets" : 1,
-									"numoutlets" : 1,
-									"outlettype" : [ "float" ],
+									"numoutlets" : 2,
+									"outlettype" : [ "float", "" ],
 									"patching_rect" : [ 164.0, 91.0, 105.0, 20.0 ],
-									"text" : "sun.prng.slave #3"
+									"text" : "sun.prng.lcg #3"
 								}
 
 							}
@@ -2915,15 +2898,6 @@
 							}
 , 							{
 								"patchline" : 								{
-									"destination" : [ "obj-65", 0 ],
-									"disabled" : 0,
-									"hidden" : 0,
-									"source" : [ "obj-64", 0 ]
-								}
-
-							}
-, 							{
-								"patchline" : 								{
 									"destination" : [ "obj-67", 0 ],
 									"disabled" : 0,
 									"hidden" : 0,
@@ -3309,10 +3283,10 @@
 									"id" : "obj-3",
 									"maxclass" : "newobj",
 									"numinlets" : 1,
-									"numoutlets" : 1,
-									"outlettype" : [ "float" ],
+									"numoutlets" : 2,
+									"outlettype" : [ "float", "" ],
 									"patching_rect" : [ 277.0, 115.0, 105.0, 20.0 ],
-									"text" : "sun.prng.slave #3"
+									"text" : "sun.prng.lcg #3"
 								}
 
 							}
@@ -3771,10 +3745,10 @@
 									"id" : "obj-13",
 									"maxclass" : "newobj",
 									"numinlets" : 1,
-									"numoutlets" : 1,
-									"outlettype" : [ "float" ],
+									"numoutlets" : 2,
+									"outlettype" : [ "float", "" ],
 									"patching_rect" : [ 18.5, 91.0, 105.0, 20.0 ],
-									"text" : "sun.prng.slave #3"
+									"text" : "sun.prng.lcg #3"
 								}
 
 							}
@@ -3939,10 +3913,10 @@
 									"id" : "obj-3",
 									"maxclass" : "newobj",
 									"numinlets" : 1,
-									"numoutlets" : 1,
-									"outlettype" : [ "float" ],
+									"numoutlets" : 2,
+									"outlettype" : [ "float", "" ],
 									"patching_rect" : [ 164.0, 91.0, 105.0, 20.0 ],
-									"text" : "sun.prng.slave #3"
+									"text" : "sun.prng.lcg #3"
 								}
 
 							}
@@ -5763,77 +5737,77 @@
 		"dependency_cache" : [ 			{
 				"name" : "sun.2pan~.maxpat",
 				"bootpath" : "/Users/dan/AbletonLibrary/MaxLib/lib",
-				"patcherrelativepath" : "../../../../MaxLib/lib",
+				"patcherrelativepath" : "",
 				"type" : "JSON",
 				"implicit" : 1
 			}
 , 			{
 				"name" : "sun.powercurve~.maxpat",
 				"bootpath" : "/Users/dan/AbletonLibrary/MaxLib/lib",
-				"patcherrelativepath" : "../../../../MaxLib/lib",
+				"patcherrelativepath" : "",
 				"type" : "JSON",
 				"implicit" : 1
 			}
 , 			{
 				"name" : "sun.loadbang.more.maxpat",
 				"bootpath" : "/Users/dan/AbletonLibrary/MaxLib/lib",
-				"patcherrelativepath" : "../../../../MaxLib/lib",
+				"patcherrelativepath" : "",
 				"type" : "JSON",
 				"implicit" : 1
 			}
 , 			{
 				"name" : "thru.maxpat",
 				"bootpath" : "/Users/dan/AbletonLibrary/MaxLib/lib",
-				"patcherrelativepath" : "../../../../MaxLib/lib",
+				"patcherrelativepath" : "",
 				"type" : "JSON",
 				"implicit" : 1
 			}
 , 			{
-				"name" : "sun.prng.slave.maxpat",
+				"name" : "sun.prng.lcg.maxpat",
 				"bootpath" : "/Users/dan/AbletonLibrary/MaxLib/lib",
-				"patcherrelativepath" : "../../../../MaxLib/lib",
+				"patcherrelativepath" : "",
 				"type" : "JSON",
 				"implicit" : 1
 			}
 , 			{
 				"name" : "sun.gaussianize.maxpat",
 				"bootpath" : "/Users/dan/AbletonLibrary/MaxLib/lib",
-				"patcherrelativepath" : "../../../../MaxLib/lib",
+				"patcherrelativepath" : "",
 				"type" : "JSON",
 				"implicit" : 1
 			}
 , 			{
 				"name" : "sun.interp.maxpat",
 				"bootpath" : "/Users/dan/AbletonLibrary/MaxLib/lib",
-				"patcherrelativepath" : "../../../../MaxLib/lib",
+				"patcherrelativepath" : "",
 				"type" : "JSON",
 				"implicit" : 1
 			}
 , 			{
 				"name" : "sun.loadbang.maxpat",
 				"bootpath" : "/Users/dan/AbletonLibrary/MaxLib/lib",
-				"patcherrelativepath" : "../../../../MaxLib/lib",
+				"patcherrelativepath" : "",
 				"type" : "JSON",
 				"implicit" : 1
 			}
 , 			{
 				"name" : "sun.wlist.maxpat",
 				"bootpath" : "/Users/dan/AbletonLibrary/MaxLib/lib",
-				"patcherrelativepath" : "../../../../MaxLib/lib",
+				"patcherrelativepath" : "",
 				"type" : "JSON",
 				"implicit" : 1
 			}
 , 			{
 				"name" : "sun.wchoose.js",
 				"bootpath" : "/Users/dan/AbletonLibrary/MaxLib/lib",
-				"patcherrelativepath" : "../../../../MaxLib/lib",
+				"patcherrelativepath" : "",
 				"type" : "TEXT",
 				"implicit" : 1
 			}
 , 			{
 				"name" : "sun.sqrtcpcurve.maxpat",
 				"bootpath" : "/Users/dan/AbletonLibrary/MaxLib/lib",
-				"patcherrelativepath" : "../../../../MaxLib/lib",
+				"patcherrelativepath" : "",
 				"type" : "JSON",
 				"implicit" : 1
 			}

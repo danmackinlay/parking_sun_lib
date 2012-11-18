@@ -402,7 +402,7 @@
 				"implicit" : 1
 			}
 , 			{
-				"name" : "sun.prng.slave.maxpat",
+				"name" : "sun.prng.lcg.maxpat",
 				"bootpath" : "/Users/dan/AbletonLibrary/MaxLib/lib",
 				"patcherrelativepath" : "../../../../MaxLib/lib",
 				"type" : "JSON",

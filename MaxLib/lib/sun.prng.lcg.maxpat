@@ -32,12 +32,12 @@
 					"fontsize" : 12.0,
 					"frgb" : 0.0,
 					"id" : "obj-4",
-					"linecount" : 5,
+					"linecount" : 6,
 					"maxclass" : "comment",
 					"numinlets" : 1,
 					"numoutlets" : 0,
-					"patching_rect" : [ 380.0, 20.0, 150.0, 74.0 ],
-					"text" : "a Linear Congruential Generator - a pseudo RNG, offering shared state across several RNGs. Message-rate only."
+					"patching_rect" : [ 380.0, 20.0, 150.0, 87.0 ],
+					"text" : "a Linear Congruential Generator - a pseudo RNG, offering shared state across several RNGs. Message-rate, offerings ints and floats."
 				}
 
 			}
@@ -78,7 +78,7 @@
 					"numinlets" : 2,
 					"numoutlets" : 1,
 					"outlettype" : [ "float" ],
-					"patching_rect" : [ 221.0, 249.0, 74.0, 20.0 ],
+					"patching_rect" : [ 105.0, 249.0, 74.0, 20.0 ],
 					"text" : "/ 16777216."
 				}
 
@@ -90,7 +90,7 @@
 					"maxclass" : "outlet",
 					"numinlets" : 1,
 					"numoutlets" : 0,
-					"patching_rect" : [ 221.0, 277.0, 25.0, 25.0 ]
+					"patching_rect" : [ 105.0, 277.0, 25.0, 25.0 ]
 				}
 
 			}
@@ -128,12 +128,12 @@
 					"fontsize" : 12.0,
 					"frgb" : 0.0,
 					"id" : "obj-13",
-					"linecount" : 6,
+					"linecount" : 5,
 					"maxclass" : "comment",
 					"numinlets" : 1,
 					"numoutlets" : 0,
-					"patching_rect" : [ 241.0, 355.0, 215.0, 87.0 ],
-					"text" : "according to wikipedia, these coefficient of the LGC were used by primoridal MS visual basic v<6, and according to me are as large as Max's tinny little numerical systems can handle."
+					"patching_rect" : [ 241.0, 355.0, 227.0, 74.0 ],
+					"text" : "according to wikipedia, these LCG coefficients were used by primoridal MS visual basic (v<6), and according to me are as large as Max's tinny little numerical systems can handle."
 				}
 
 			}
