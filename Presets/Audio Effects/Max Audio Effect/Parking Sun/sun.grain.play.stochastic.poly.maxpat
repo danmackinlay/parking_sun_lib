@@ -36,7 +36,7 @@
 					"numinlets" : 2,
 					"numoutlets" : 2,
 					"outlettype" : [ "signal", "float" ],
-					"patching_rect" : [ 430.5, 426.0, 94.0, 20.0 ],
+					"patching_rect" : [ 654.0, 610.5, 94.0, 20.0 ],
 					"sig" : 0.0
 				}
 
@@ -3179,7 +3179,7 @@
  ]
 					}
 ,
-					"patching_rect" : [ 398.0, 265.0, 50.0, 20.0 ],
+					"patching_rect" : [ 398.0, 320.0, 50.0, 20.0 ],
 					"saved_object_attributes" : 					{
 						"default_fontface" : 0,
 						"default_fontname" : "Arial",
@@ -3913,7 +3913,7 @@
 					"numinlets" : 2,
 					"numoutlets" : 2,
 					"outlettype" : [ "signal", "float" ],
-					"patching_rect" : [ 343.5, 354.0, 94.0, 20.0 ],
+					"patching_rect" : [ 474.666656, 375.0, 94.0, 20.0 ],
 					"sig" : 0.0
 				}
 
@@ -4181,7 +4181,7 @@
 					"numoutlets" : 7,
 					"outlettype" : [ "", "", "", "", "", "", "" ],
 					"patching_rect" : [ 347.0, 48.0, 168.0, 18.0 ],
-					"text" : "route pitch offset pan amp set filt"
+					"text" : "route pitch offset filt amp set pan"
 				}
 
 			}
@@ -4439,7 +4439,7 @@
 					"numinlets" : 2,
 					"numoutlets" : 1,
 					"outlettype" : [ "signal" ],
-					"patching_rect" : [ 398.0, 298.0, 50.0, 20.0 ],
+					"patching_rect" : [ 398.0, 353.0, 50.0, 20.0 ],
 					"text" : "sah~ 0."
 				}
 
@@ -4621,7 +4621,7 @@
 					"destination" : [ "obj-3", 0 ],
 					"disabled" : 0,
 					"hidden" : 0,
-					"source" : [ "obj-2", 5 ]
+					"source" : [ "obj-2", 2 ]
 				}
 
 			}
@@ -4657,8 +4657,8 @@
 					"destination" : [ "obj-89", 0 ],
 					"disabled" : 0,
 					"hidden" : 0,
-					"midpoints" : [ 406.166656, 126.0, 881.0, 126.0, 881.0, 668.0, 585.0, 668.0, 585.0, 663.0, 484.166656, 663.0 ],
-					"source" : [ "obj-2", 2 ]
+					"midpoints" : [ 480.666656, 126.0, 881.0, 126.0, 881.0, 668.0, 585.0, 668.0, 585.0, 663.0, 484.166656, 663.0 ],
+					"source" : [ "obj-2", 5 ]
 				}
 
 			}
