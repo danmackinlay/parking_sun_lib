@@ -95,7 +95,7 @@
 									"maxclass" : "inlet",
 									"numinlets" : 0,
 									"numoutlets" : 1,
-									"outlettype" : [ "bang" ],
+									"outlettype" : [ "float" ],
 									"patching_rect" : [ 164.0, 40.0, 25.0, 25.0 ]
 								}
 
@@ -120,17 +120,6 @@
 									"numinlets" : 1,
 									"numoutlets" : 0,
 									"patching_rect" : [ 104.0, 498.0, 25.0, 25.0 ]
-								}
-
-							}
-, 							{
-								"box" : 								{
-									"id" : "obj-28",
-									"maxclass" : "button",
-									"numinlets" : 1,
-									"numoutlets" : 1,
-									"outlettype" : [ "bang" ],
-									"patching_rect" : [ 249.0, 133.0, 20.0, 20.0 ]
 								}
 
 							}
@@ -490,15 +479,6 @@
 							}
 , 							{
 								"patchline" : 								{
-									"destination" : [ "obj-28", 0 ],
-									"disabled" : 0,
-									"hidden" : 0,
-									"source" : [ "obj-93", 0 ]
-								}
-
-							}
-, 							{
-								"patchline" : 								{
 									"destination" : [ "obj-3", 0 ],
 									"disabled" : 0,
 									"hidden" : 0,
@@ -848,7 +828,7 @@
 													"maxclass" : "inlet",
 													"numinlets" : 0,
 													"numoutlets" : 1,
-													"outlettype" : [ "bang" ],
+													"outlettype" : [ "float" ],
 													"patching_rect" : [ 277.0, 40.0, 25.0, 25.0 ]
 												}
 
@@ -1214,7 +1194,7 @@
 									"maxclass" : "inlet",
 									"numinlets" : 0,
 									"numoutlets" : 1,
-									"outlettype" : [ "bang" ],
+									"outlettype" : [ "float" ],
 									"patching_rect" : [ 81.0, 40.0, 25.0, 25.0 ]
 								}
 
@@ -1677,7 +1657,7 @@
 													"maxclass" : "inlet",
 													"numinlets" : 0,
 													"numoutlets" : 1,
-													"outlettype" : [ "bang" ],
+													"outlettype" : [ "float" ],
 													"patching_rect" : [ 164.0, 39.0, 25.0, 25.0 ]
 												}
 
@@ -2035,7 +2015,7 @@
 									"maxclass" : "inlet",
 									"numinlets" : 0,
 									"numoutlets" : 1,
-									"outlettype" : [ "bang" ],
+									"outlettype" : [ "float" ],
 									"patching_rect" : [ 77.0, 40.0, 25.0, 25.0 ]
 								}
 
@@ -2199,7 +2179,7 @@
 									"maxclass" : "inlet",
 									"numinlets" : 0,
 									"numoutlets" : 1,
-									"outlettype" : [ "bang" ],
+									"outlettype" : [ "float" ],
 									"patching_rect" : [ 187.0, 40.0, 25.0, 25.0 ]
 								}
 
@@ -3780,7 +3760,7 @@
 													"maxclass" : "inlet",
 													"numinlets" : 0,
 													"numoutlets" : 1,
-													"outlettype" : [ "bang" ],
+													"outlettype" : [ "float" ],
 													"patching_rect" : [ 164.0, 39.0, 25.0, 25.0 ]
 												}
 
@@ -4621,7 +4601,7 @@
 									"maxclass" : "inlet",
 									"numinlets" : 0,
 									"numoutlets" : 1,
-									"outlettype" : [ "bang" ],
+									"outlettype" : [ "float" ],
 									"patching_rect" : [ 264.5, 40.0, 25.0, 25.0 ]
 								}
 
@@ -4894,7 +4874,7 @@
  ]
 					}
 ,
-					"patching_rect" : [ 430.5, 619.0, 73.0, 20.0 ],
+					"patching_rect" : [ 433.166656, 674.0, 73.0, 20.0 ],
 					"saved_object_attributes" : 					{
 						"default_fontface" : 0,
 						"default_fontname" : "Arial",
@@ -5763,7 +5743,7 @@
 					"maxclass" : "comment",
 					"numinlets" : 1,
 					"numoutlets" : 0,
-					"patching_rect" : [ 753.5, 318.5, 150.0, 37.0 ],
+					"patching_rect" : [ 809.5, 318.5, 150.0, 37.0 ],
 					"text" : "global rng trigger (offset by 1/2)"
 				}
 
@@ -5775,10 +5755,10 @@
 					"id" : "obj-20",
 					"maxclass" : "newobj",
 					"numinlets" : 1,
-					"numoutlets" : 1,
-					"outlettype" : [ "bang" ],
-					"patching_rect" : [ 709.0, 327.0, 31.0, 20.0 ],
-					"text" : "thru"
+					"numoutlets" : 2,
+					"outlettype" : [ "float", "" ],
+					"patching_rect" : [ 709.0, 327.0, 93.0, 20.0 ],
+					"text" : "sun.prng.lcg #3"
 				}
 
 			}
@@ -5902,7 +5882,7 @@
 					"numinlets" : 2,
 					"numoutlets" : 1,
 					"outlettype" : [ "signal" ],
-					"patching_rect" : [ 288.0, 584.0, 32.5, 20.0 ],
+					"patching_rect" : [ 327.0, 606.0, 32.5, 20.0 ],
 					"text" : "*~"
 				}
 
@@ -5959,7 +5939,7 @@
 					"numinlets" : 2,
 					"numoutlets" : 1,
 					"outlettype" : [ "signal" ],
-					"patching_rect" : [ 287.5, 552.0, 32.5, 20.0 ],
+					"patching_rect" : [ 326.5, 574.0, 32.5, 20.0 ],
 					"text" : "*~"
 				}
 
@@ -6322,7 +6302,7 @@
 					"destination" : [ "obj-67", 3 ],
 					"disabled" : 0,
 					"hidden" : 0,
-					"midpoints" : [ 310.5, 472.5, 480.5, 472.5 ],
+					"midpoints" : [ 310.5, 472.5, 483.166656, 472.5 ],
 					"source" : [ "obj-70", 0 ]
 				}
 
@@ -6386,7 +6366,7 @@
 					"destination" : [ "obj-43", 0 ],
 					"disabled" : 0,
 					"hidden" : 0,
-					"midpoints" : [ 128.0, 549.0, 297.0, 549.0 ],
+					"midpoints" : [ 128.0, 558.0, 336.0, 558.0 ],
 					"source" : [ "obj-86", 0 ]
 				}
 
@@ -6444,7 +6424,7 @@
 				"implicit" : 1
 			}
 , 			{
-				"name" : "thru.maxpat",
+				"name" : "sun.prng.lcg.maxpat",
 				"bootpath" : "/Users/dan/AbletonLibrary/MaxLib/lib",
 				"patcherrelativepath" : "",
 				"type" : "JSON",
@@ -6466,13 +6446,6 @@
 			}
 , 			{
 				"name" : "sun.loadbang.more.maxpat",
-				"bootpath" : "/Users/dan/AbletonLibrary/MaxLib/lib",
-				"patcherrelativepath" : "",
-				"type" : "JSON",
-				"implicit" : 1
-			}
-, 			{
-				"name" : "sun.prng.lcg.maxpat",
 				"bootpath" : "/Users/dan/AbletonLibrary/MaxLib/lib",
 				"patcherrelativepath" : "",
 				"type" : "JSON",
@@ -6504,6 +6477,13 @@
 				"bootpath" : "/Users/dan/AbletonLibrary/MaxLib/lib",
 				"patcherrelativepath" : "",
 				"type" : "TEXT",
+				"implicit" : 1
+			}
+, 			{
+				"name" : "thru.maxpat",
+				"bootpath" : "/Users/dan/AbletonLibrary/MaxLib/lib",
+				"patcherrelativepath" : "",
+				"type" : "JSON",
 				"implicit" : 1
 			}
  ]
